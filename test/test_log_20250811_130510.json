@@ -1,0 +1,1494 @@
+{
+  "test_session": {
+    "session_id": "a556fb3a",
+    "start_time": "2025-08-11T13:05:10.958425",
+    "test_framework": "NYC Taxi ETL Pipeline Test Suite",
+    "version": "1.0.0",
+    "end_time": "2025-08-11T13:05:10.958447",
+    "duration_seconds": 1
+  },
+  "system_info": {
+    "timestamp": "2025-08-11T13:05:10.958427",
+    "python_version": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "win32",
+    "working_directory": "C:\\ifood-case",
+    "environment": {
+      "PATH": "c:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin;C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI2\\wbin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\dotnet\\;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\;C:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\Python\\Python313\\;C:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\PRINCIPAL\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin;C:\\Users\\PRINCIPAL\\.dotnet\\tools;c:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\;C:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\Python\\Python313\\;C:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\PRINCIPAL\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\PRINCIPAL\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin;C:\\Users\\PRINCIPAL\\.dotnet\\tools;C:\\Users\\PRINCIPAL\\AppData\\Roaming\\npm;c:\\Users\\PRINCIPAL\\.cursor\\extensions\\ms-python.debugpy-2025.6.0-win32-x64\\bundled\\scripts\\noConfigScripts",
+      "PYTHONPATH": "",
+      "USER": "PRINCIPAL"
+    }
+  },
+  "project_info": {
+    "name": "NYC Taxi Data Engineering Pipeline",
+    "description": "Pipeline de dados end-to-end para processamento de dados de táxis de NYC",
+    "architecture": "Bronze-Silver-Gold",
+    "target_platform": "Databricks + PySpark"
+  },
+  "test_results": {
+    "summary": {
+      "total_tests": 3,
+      "passed_tests": 3,
+      "failed_tests": 0,
+      "overall_status": "passed"
+    },
+    "individual_tests": [
+      {
+        "test_name": "project_structure",
+        "description": "Verifica se todos os arquivos obrigatórios estão presentes",
+        "timestamp": "2025-08-11T13:05:10.900176",
+        "status": "passed",
+        "details": {
+          "required_files": 13,
+          "found_files": 13,
+          "missing_files": [],
+          "extra_files": [
+            "generate_test_log.py",
+            "test_pipeline.py",
+            "test_simple.py",
+            "test_syntax.py"
+          ],
+          "file_details": {
+            "src/__init__.py": {
+              "exists": true,
+              "hash": "08a61642992d848235ca1d28e0ed6050",
+              "stats": {
+                "size_bytes": 88,
+                "modified_time": "2025-08-11T12:47:21.973973",
+                "created_time": "2025-08-11T12:35:43.785197"
+              }
+            },
+            "src/bronze_layer.py": {
+              "exists": true,
+              "hash": "b23dbdd10685710a7784f7eef60f24e6",
+              "stats": {
+                "size_bytes": 9425,
+                "modified_time": "2025-08-11T12:49:33.958573",
+                "created_time": "2025-08-11T12:36:24.575234"
+              }
+            },
+            "src/silver_layer.py": {
+              "exists": true,
+              "hash": "f92d80e2b3206b32029b5f02ebf29dcc",
+              "stats": {
+                "size_bytes": 15074,
+                "modified_time": "2025-08-11T12:49:38.425936",
+                "created_time": "2025-08-11T12:37:04.150300"
+              }
+            },
+            "src/gold_layer.py": {
+              "exists": true,
+              "hash": "5d2036f58ebb56964a408a05329ae0c3",
+              "stats": {
+                "size_bytes": 16549,
+                "modified_time": "2025-08-11T12:49:41.259298",
+                "created_time": "2025-08-11T12:37:53.286589"
+              }
+            },
+            "src/etl_pipeline.py": {
+              "exists": true,
+              "hash": "b50f5e15c64fe6b73c34d5b9861f0920",
+              "stats": {
+                "size_bytes": 15894,
+                "modified_time": "2025-08-11T12:49:44.842459",
+                "created_time": "2025-08-11T12:38:40.646734"
+              }
+            },
+            "analysis/__init__.py": {
+              "exists": true,
+              "hash": "1ccbb4ec597e9915387698b9ca6c328b",
+              "stats": {
+                "size_bytes": 36,
+                "modified_time": "2025-08-11T12:49:25.550166",
+                "created_time": "2025-08-11T12:35:44.716663"
+              }
+            },
+            "analysis/nyc_taxi_analysis.py": {
+              "exists": true,
+              "hash": "e25bbf9f04b65b462eb5a9a03a61d12d",
+              "stats": {
+                "size_bytes": 17193,
+                "modified_time": "2025-08-11T12:49:49.188572",
+                "created_time": "2025-08-11T12:39:46.187817"
+              }
+            },
+            "analysis/NYC_Taxi_Analysis.ipynb": {
+              "exists": true,
+              "hash": "d8b9396e9fbf63f280923f342ee864df",
+              "stats": {
+                "size_bytes": 4928,
+                "modified_time": "2025-08-11T12:45:53.311905",
+                "created_time": "2025-08-11T12:41:16.163202"
+              }
+            },
+            "requirements.txt": {
+              "exists": true,
+              "hash": "9ae19257b48dab95dfb4aea866c34dc1",
+              "stats": {
+                "size_bytes": 643,
+                "modified_time": "2025-08-11T12:49:30.633385",
+                "created_time": "2025-08-11T12:35:52.054706"
+              }
+            },
+            "README.md": {
+              "exists": true,
+              "hash": "bd18279e6ff082c5112c9c82604bf586",
+              "stats": {
+                "size_bytes": 10376,
+                "modified_time": "2025-08-11T12:51:11.972944",
+                "created_time": "2025-08-11T12:43:04.052252"
+              }
+            },
+            "config.yaml": {
+              "exists": true,
+              "hash": "2e2c2be87dc2f2ff019f20f90a34edb4",
+              "stats": {
+                "size_bytes": 1359,
+                "modified_time": "2025-08-11T12:49:57.711755",
+                "created_time": "2025-08-11T12:43:14.718645"
+              }
+            },
+            "databricks_etl_runner.py": {
+              "exists": true,
+              "hash": "fca93ce698ec3e111956bba0468b597e",
+              "stats": {
+                "size_bytes": 11763,
+                "modified_time": "2025-08-11T12:50:04.614913",
+                "created_time": "2025-08-11T12:43:59.598299"
+              }
+            },
+            "EXECUTION_GUIDE.md": {
+              "exists": true,
+              "hash": "00eab0e33a8bf41377b4c601a66b9851",
+              "stats": {
+                "size_bytes": 6247,
+                "modified_time": "2025-08-11T12:49:21.928940",
+                "created_time": "2025-08-11T12:45:31.690981"
+              }
+            }
+          }
+        }
+      },
+      {
+        "test_name": "python_files_analysis",
+        "description": "Análise detalhada de todos os arquivos Python",
+        "timestamp": "2025-08-11T13:05:10.927837",
+        "status": "passed",
+        "details": {
+          "total_files": 5,
+          "passed_files": 5,
+          "failed_files": 0,
+          "total_lines": 1924,
+          "total_classes": 5,
+          "total_functions": 44,
+          "files": {
+            "src/bronze_layer.py": {
+              "file_path": "src/bronze_layer.py",
+              "analysis_success": true,
+              "hash": "b23dbdd10685710a7784f7eef60f24e6",
+              "stats": {
+                "size_bytes": 9425,
+                "modified_time": "2025-08-11T12:49:33.958573",
+                "created_time": "2025-08-11T12:36:24.575234"
+              },
+              "syntax_valid": true,
+              "lines_of_code": 180,
+              "total_lines": 246,
+              "docstring": "Bronze Layer - Data Ingestion Module\n====================================\n\nThis module handles the ingestion of raw NYC Yellow Taxi data from the official source\ninto the Bronze layer of our data lake architecture.\n\nThe Bronze layer stores raw, unprocessed data exactly as received from the source.",
+              "has_docstring": true,
+              "classes": [
+                {
+                  "name": "BronzeLayer",
+                  "line_number": 20,
+                  "methods": [
+                    {
+                      "name": "__init__",
+                      "line_number": 30,
+                      "args_count": 3,
+                      "docstring": "Initialize Bronze Layer processor.\n\nArgs:\n    spark: SparkSession instance\n    bronze_path: Path to store bronze layer data (e.g., 's3://bucket/bronze/')"
+                    },
+                    {
+                      "name": "get_data_urls",
+                      "line_number": 42,
+                      "args_count": 3,
+                      "docstring": "Generate URLs for NYC Yellow Taxi data files.\n\nArgs:\n    year: Year of data to download\n    months: List of months (1-12) to download. Defaults to Jan-May 2023.\n    \nReturns:\n    List of URLs to download"
+                    },
+                    {
+                      "name": "download_file",
+                      "line_number": 64,
+                      "args_count": 3,
+                      "docstring": "Download a file from URL to local path.\n\nArgs:\n    url: URL to download from\n    local_path: Local path to save the file\n    \nReturns:\n    True if successful, False otherwise"
+                    },
+                    {
+                      "name": "ingest_data",
+                      "line_number": 91,
+                      "args_count": 3,
+                      "docstring": "Ingest raw NYC taxi data into Bronze layer.\n\nThis method:\n1. Downloads raw parquet files from NYC TLC\n2. Stores them in the Bronze layer with metadata\n3. Creates audit trail for data lineage\n\nArgs:\n    year: Year of data to ingest\n    months: List of months to ingest\n    \nReturns:\n    True if ingestion successful, False otherwise"
+                    },
+                    {
+                      "name": "validate_bronze_data",
+                      "line_number": 154,
+                      "args_count": 1,
+                      "docstring": "Validate bronze layer data and return quality metrics.\n\nReturns:\n    Dictionary containing validation results and metrics"
+                    }
+                  ],
+                  "docstring": "Handles data ingestion for the Bronze layer of the data lake.\n\nThe Bronze layer is responsible for:\n- Downloading raw data from NYC TLC website\n- Storing data in its original format\n- Maintaining data lineage and audit trail"
+                }
+              ],
+              "functions": [
+                {
+                  "name": "create_bronze_layer_job",
+                  "line_number": 195,
+                  "args_count": 4,
+                  "docstring": "Convenience function to create and run a Bronze layer ingestion job.\n\nArgs:\n    spark: SparkSession instance\n    bronze_path: Path for bronze layer storage\n    year: Year of data to process\n    months: Months to process\n    \nReturns:\n    True if successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "__init__",
+                  "line_number": 30,
+                  "args_count": 3,
+                  "docstring": "Initialize Bronze Layer processor.\n\nArgs:\n    spark: SparkSession instance\n    bronze_path: Path to store bronze layer data (e.g., 's3://bucket/bronze/')",
+                  "is_method": false
+                },
+                {
+                  "name": "get_data_urls",
+                  "line_number": 42,
+                  "args_count": 3,
+                  "docstring": "Generate URLs for NYC Yellow Taxi data files.\n\nArgs:\n    year: Year of data to download\n    months: List of months (1-12) to download. Defaults to Jan-May 2023.\n    \nReturns:\n    List of URLs to download",
+                  "is_method": false
+                },
+                {
+                  "name": "download_file",
+                  "line_number": 64,
+                  "args_count": 3,
+                  "docstring": "Download a file from URL to local path.\n\nArgs:\n    url: URL to download from\n    local_path: Local path to save the file\n    \nReturns:\n    True if successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "ingest_data",
+                  "line_number": 91,
+                  "args_count": 3,
+                  "docstring": "Ingest raw NYC taxi data into Bronze layer.\n\nThis method:\n1. Downloads raw parquet files from NYC TLC\n2. Stores them in the Bronze layer with metadata\n3. Creates audit trail for data lineage\n\nArgs:\n    year: Year of data to ingest\n    months: List of months to ingest\n    \nReturns:\n    True if ingestion successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "validate_bronze_data",
+                  "line_number": 154,
+                  "args_count": 1,
+                  "docstring": "Validate bronze layer data and return quality metrics.\n\nReturns:\n    Dictionary containing validation results and metrics",
+                  "is_method": false
+                }
+              ],
+              "imports": [
+                {
+                  "module": "os",
+                  "alias": null,
+                  "type": "import",
+                  "line_number": 11
+                },
+                {
+                  "module": "requests",
+                  "alias": null,
+                  "type": "import",
+                  "line_number": 12
+                },
+                {
+                  "module": "typing.List",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 13
+                },
+                {
+                  "module": "typing.Optional",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 13
+                },
+                {
+                  "module": "datetime.datetime",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.SparkSession",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 15
+                },
+                {
+                  "module": "loguru.logger",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 16
+                },
+                {
+                  "module": "tempfile",
+                  "alias": null,
+                  "type": "import",
+                  "line_number": 17
+                }
+              ],
+              "constants": [],
+              "complexity_metrics": {
+                "total_nodes": 982,
+                "function_count": 6,
+                "class_count": 1,
+                "import_count": 7
+              }
+            },
+            "src/silver_layer.py": {
+              "file_path": "src/silver_layer.py",
+              "analysis_success": true,
+              "hash": "f92d80e2b3206b32029b5f02ebf29dcc",
+              "stats": {
+                "size_bytes": 15074,
+                "modified_time": "2025-08-11T12:49:38.425936",
+                "created_time": "2025-08-11T12:37:04.150300"
+              },
+              "syntax_valid": true,
+              "lines_of_code": 283,
+              "total_lines": 394,
+              "docstring": "Silver Layer - Data Transformation and Quality Module\n====================================================\n\nThis module handles data cleaning, transformation, and quality validation\nfor the Silver layer of our data lake architecture.\n\nThe Silver layer provides cleaned, validated, and standardized data ready for analytics.",
+              "has_docstring": true,
+              "classes": [
+                {
+                  "name": "SilverLayer",
+                  "line_number": 23,
+                  "methods": [
+                    {
+                      "name": "__init__",
+                      "line_number": 34,
+                      "args_count": 3,
+                      "docstring": "Initialize Silver Layer processor.\n\nArgs:\n    spark: SparkSession instance\n    silver_path: Path to store silver layer data"
+                    },
+                    {
+                      "name": "get_bronze_data",
+                      "line_number": 61,
+                      "args_count": 1,
+                      "docstring": "Read all bronze layer data and combine into single DataFrame.\n\nReturns:\n    Combined DataFrame from all bronze tables"
+                    },
+                    {
+                      "name": "validate_schema",
+                      "line_number": 96,
+                      "args_count": 2,
+                      "docstring": "Validate and enforce schema for required columns.\n\nArgs:\n    df: Input DataFrame\n    \nReturns:\n    DataFrame with validated schema"
+                    },
+                    {
+                      "name": "clean_data",
+                      "line_number": 130,
+                      "args_count": 2,
+                      "docstring": "Apply data cleaning transformations.\n\nArgs:\n    df: Input DataFrame\n    \nReturns:\n    Cleaned DataFrame"
+                    },
+                    {
+                      "name": "enrich_data",
+                      "line_number": 196,
+                      "args_count": 2,
+                      "docstring": "Add derived columns and enrichments.\n\nArgs:\n    df: Input DataFrame\n    \nReturns:\n    Enriched DataFrame"
+                    },
+                    {
+                      "name": "generate_quality_report",
+                      "line_number": 229,
+                      "args_count": 2,
+                      "docstring": "Generate data quality report for the processed data.\n\nArgs:\n    df: DataFrame to analyze\n    \nReturns:\n    Dictionary containing quality metrics"
+                    },
+                    {
+                      "name": "process_to_silver",
+                      "line_number": 288,
+                      "args_count": 1,
+                      "docstring": "Complete Silver layer processing pipeline.\n\nThis method orchestrates the full Silver layer transformation:\n1. Read bronze data\n2. Validate schema\n3. Clean data\n4. Enrich data\n5. Generate quality report\n6. Save to Silver layer\n\nReturns:\n    True if processing successful, False otherwise"
+                    }
+                  ],
+                  "docstring": "Handles data transformation and quality validation for the Silver layer.\n\nThe Silver layer is responsible for:\n- Data cleaning and standardization\n- Quality validation and filtering\n- Schema enforcement\n- Data type conversions"
+                }
+              ],
+              "functions": [
+                {
+                  "name": "create_silver_layer_job",
+                  "line_number": 348,
+                  "args_count": 2,
+                  "docstring": "Convenience function to create and run a Silver layer processing job.\n\nArgs:\n    spark: SparkSession instance\n    silver_path: Path for silver layer storage\n    \nReturns:\n    True if successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "__init__",
+                  "line_number": 34,
+                  "args_count": 3,
+                  "docstring": "Initialize Silver Layer processor.\n\nArgs:\n    spark: SparkSession instance\n    silver_path: Path to store silver layer data",
+                  "is_method": false
+                },
+                {
+                  "name": "get_bronze_data",
+                  "line_number": 61,
+                  "args_count": 1,
+                  "docstring": "Read all bronze layer data and combine into single DataFrame.\n\nReturns:\n    Combined DataFrame from all bronze tables",
+                  "is_method": false
+                },
+                {
+                  "name": "validate_schema",
+                  "line_number": 96,
+                  "args_count": 2,
+                  "docstring": "Validate and enforce schema for required columns.\n\nArgs:\n    df: Input DataFrame\n    \nReturns:\n    DataFrame with validated schema",
+                  "is_method": false
+                },
+                {
+                  "name": "clean_data",
+                  "line_number": 130,
+                  "args_count": 2,
+                  "docstring": "Apply data cleaning transformations.\n\nArgs:\n    df: Input DataFrame\n    \nReturns:\n    Cleaned DataFrame",
+                  "is_method": false
+                },
+                {
+                  "name": "enrich_data",
+                  "line_number": 196,
+                  "args_count": 2,
+                  "docstring": "Add derived columns and enrichments.\n\nArgs:\n    df: Input DataFrame\n    \nReturns:\n    Enriched DataFrame",
+                  "is_method": false
+                },
+                {
+                  "name": "generate_quality_report",
+                  "line_number": 229,
+                  "args_count": 2,
+                  "docstring": "Generate data quality report for the processed data.\n\nArgs:\n    df: DataFrame to analyze\n    \nReturns:\n    Dictionary containing quality metrics",
+                  "is_method": false
+                },
+                {
+                  "name": "process_to_silver",
+                  "line_number": 288,
+                  "args_count": 1,
+                  "docstring": "Complete Silver layer processing pipeline.\n\nThis method orchestrates the full Silver layer transformation:\n1. Read bronze data\n2. Validate schema\n3. Clean data\n4. Enrich data\n5. Generate quality report\n6. Save to Silver layer\n\nReturns:\n    True if processing successful, False otherwise",
+                  "is_method": false
+                }
+              ],
+              "imports": [
+                {
+                  "module": "typing.Dict",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 11
+                },
+                {
+                  "module": "typing.List",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 11
+                },
+                {
+                  "module": "typing.Optional",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 11
+                },
+                {
+                  "module": "datetime.datetime",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 12
+                },
+                {
+                  "module": "pyspark.sql.SparkSession",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 13
+                },
+                {
+                  "module": "pyspark.sql.DataFrame",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 13
+                },
+                {
+                  "module": "pyspark.sql.functions.col",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.when",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.isnan",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.isnull",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.count",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.avg",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.min",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.max",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.to_timestamp",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.hour",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.month",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.year",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.dayofweek",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.regexp_replace",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.trim",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.upper",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.lower",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.types.*",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 19
+                },
+                {
+                  "module": "loguru.logger",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 20
+                }
+              ],
+              "constants": [],
+              "complexity_metrics": {
+                "total_nodes": 1488,
+                "function_count": 8,
+                "class_count": 1,
+                "import_count": 6
+              }
+            },
+            "src/gold_layer.py": {
+              "file_path": "src/gold_layer.py",
+              "analysis_success": true,
+              "hash": "5d2036f58ebb56964a408a05329ae0c3",
+              "stats": {
+                "size_bytes": 16549,
+                "modified_time": "2025-08-11T12:49:41.259298",
+                "created_time": "2025-08-11T12:37:53.286589"
+              },
+              "syntax_valid": true,
+              "lines_of_code": 313,
+              "total_lines": 415,
+              "docstring": "Gold Layer - Analytics and Consumption Module\n============================================\n\nThis module handles the creation of analytics-ready datasets and aggregations\nfor the Gold layer of our data lake architecture.\n\nThe Gold layer provides business-ready data optimized for analytics and reporting.",
+              "has_docstring": true,
+              "classes": [
+                {
+                  "name": "GoldLayer",
+                  "line_number": 22,
+                  "methods": [
+                    {
+                      "name": "__init__",
+                      "line_number": 33,
+                      "args_count": 3,
+                      "docstring": "Initialize Gold Layer processor.\n\nArgs:\n    spark: SparkSession instance\n    gold_path: Path to store gold layer data"
+                    },
+                    {
+                      "name": "get_silver_data",
+                      "line_number": 44,
+                      "args_count": 1,
+                      "docstring": "Read clean data from Silver layer.\n\nReturns:\n    DataFrame from Silver layer"
+                    },
+                    {
+                      "name": "create_monthly_aggregations",
+                      "line_number": 60,
+                      "args_count": 2,
+                      "docstring": "Create monthly aggregations for business analytics.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    \nReturns:\n    DataFrame with monthly aggregations"
+                    },
+                    {
+                      "name": "create_hourly_aggregations",
+                      "line_number": 93,
+                      "args_count": 3,
+                      "docstring": "Create hourly aggregations for the specified month.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    target_month: Month to analyze (default: May = 5)\n    \nReturns:\n    DataFrame with hourly aggregations for the target month"
+                    },
+                    {
+                      "name": "create_vendor_analysis",
+                      "line_number": 127,
+                      "args_count": 2,
+                      "docstring": "Create vendor performance analysis.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    \nReturns:\n    DataFrame with vendor analysis"
+                    },
+                    {
+                      "name": "create_weekend_vs_weekday_analysis",
+                      "line_number": 158,
+                      "args_count": 2,
+                      "docstring": "Create weekend vs weekday comparison analysis.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    \nReturns:\n    DataFrame with weekend vs weekday analysis"
+                    },
+                    {
+                      "name": "create_business_kpis",
+                      "line_number": 189,
+                      "args_count": 2,
+                      "docstring": "Create key business performance indicators.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    \nReturns:\n    DataFrame with business KPIs"
+                    },
+                    {
+                      "name": "process_to_gold",
+                      "line_number": 228,
+                      "args_count": 1,
+                      "docstring": "Complete Gold layer processing pipeline.\n\nThis method creates all analytics-ready tables:\n1. Monthly aggregations\n2. Hourly aggregations (May focus)\n3. Vendor analysis\n4. Weekend vs Weekday analysis\n5. Business KPIs\n\nReturns:\n    True if processing successful, False otherwise"
+                    },
+                    {
+                      "name": "get_required_analytics_results",
+                      "line_number": 299,
+                      "args_count": 1,
+                      "docstring": "Get the specific analytics results required by the project.\n\nReturns:\n    Dictionary with required analytics results"
+                    }
+                  ],
+                  "docstring": "Handles analytics aggregations and business-ready datasets for the Gold layer.\n\nThe Gold layer is responsible for:\n- Creating business-ready aggregated tables\n- Optimizing data for analytics workloads\n- Implementing business logic and KPIs\n- Providing clean, documented datasets for consumption"
+                }
+              ],
+              "functions": [
+                {
+                  "name": "create_gold_layer_job",
+                  "line_number": 362,
+                  "args_count": 2,
+                  "docstring": "Convenience function to create and run a Gold layer processing job.\n\nArgs:\n    spark: SparkSession instance\n    gold_path: Path for gold layer storage\n    \nReturns:\n    True if successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "__init__",
+                  "line_number": 33,
+                  "args_count": 3,
+                  "docstring": "Initialize Gold Layer processor.\n\nArgs:\n    spark: SparkSession instance\n    gold_path: Path to store gold layer data",
+                  "is_method": false
+                },
+                {
+                  "name": "get_silver_data",
+                  "line_number": 44,
+                  "args_count": 1,
+                  "docstring": "Read clean data from Silver layer.\n\nReturns:\n    DataFrame from Silver layer",
+                  "is_method": false
+                },
+                {
+                  "name": "create_monthly_aggregations",
+                  "line_number": 60,
+                  "args_count": 2,
+                  "docstring": "Create monthly aggregations for business analytics.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    \nReturns:\n    DataFrame with monthly aggregations",
+                  "is_method": false
+                },
+                {
+                  "name": "create_hourly_aggregations",
+                  "line_number": 93,
+                  "args_count": 3,
+                  "docstring": "Create hourly aggregations for the specified month.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    target_month: Month to analyze (default: May = 5)\n    \nReturns:\n    DataFrame with hourly aggregations for the target month",
+                  "is_method": false
+                },
+                {
+                  "name": "create_vendor_analysis",
+                  "line_number": 127,
+                  "args_count": 2,
+                  "docstring": "Create vendor performance analysis.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    \nReturns:\n    DataFrame with vendor analysis",
+                  "is_method": false
+                },
+                {
+                  "name": "create_weekend_vs_weekday_analysis",
+                  "line_number": 158,
+                  "args_count": 2,
+                  "docstring": "Create weekend vs weekday comparison analysis.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    \nReturns:\n    DataFrame with weekend vs weekday analysis",
+                  "is_method": false
+                },
+                {
+                  "name": "create_business_kpis",
+                  "line_number": 189,
+                  "args_count": 2,
+                  "docstring": "Create key business performance indicators.\n\nArgs:\n    df: Input DataFrame from Silver layer\n    \nReturns:\n    DataFrame with business KPIs",
+                  "is_method": false
+                },
+                {
+                  "name": "process_to_gold",
+                  "line_number": 228,
+                  "args_count": 1,
+                  "docstring": "Complete Gold layer processing pipeline.\n\nThis method creates all analytics-ready tables:\n1. Monthly aggregations\n2. Hourly aggregations (May focus)\n3. Vendor analysis\n4. Weekend vs Weekday analysis\n5. Business KPIs\n\nReturns:\n    True if processing successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "get_required_analytics_results",
+                  "line_number": 299,
+                  "args_count": 1,
+                  "docstring": "Get the specific analytics results required by the project.\n\nReturns:\n    Dictionary with required analytics results",
+                  "is_method": false
+                }
+              ],
+              "imports": [
+                {
+                  "module": "typing.Dict",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 11
+                },
+                {
+                  "module": "typing.List",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 11
+                },
+                {
+                  "module": "typing.Optional",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 11
+                },
+                {
+                  "module": "datetime.datetime",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 12
+                },
+                {
+                  "module": "pyspark.sql.SparkSession",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 13
+                },
+                {
+                  "module": "pyspark.sql.DataFrame",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 13
+                },
+                {
+                  "module": "pyspark.sql.functions.col",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.avg",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.sum",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.count",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.min",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.max",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.round",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.month",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.hour",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.year",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.desc",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.functions.asc",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "pyspark.sql.types.*",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 18
+                },
+                {
+                  "module": "loguru.logger",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 19
+                }
+              ],
+              "constants": [],
+              "complexity_metrics": {
+                "total_nodes": 1551,
+                "function_count": 10,
+                "class_count": 1,
+                "import_count": 6
+              }
+            },
+            "src/etl_pipeline.py": {
+              "file_path": "src/etl_pipeline.py",
+              "analysis_success": true,
+              "hash": "b50f5e15c64fe6b73c34d5b9861f0920",
+              "stats": {
+                "size_bytes": 15894,
+                "modified_time": "2025-08-11T12:49:44.842459",
+                "created_time": "2025-08-11T12:38:40.646734"
+              },
+              "syntax_valid": true,
+              "lines_of_code": 335,
+              "total_lines": 438,
+              "docstring": "ETL Pipeline Orchestrator\n========================\n\nMain orchestrator for the NYC Taxi Data Pipeline.\nCoordinates the execution of Bronze, Silver, and Gold layer processing.",
+              "has_docstring": true,
+              "classes": [
+                {
+                  "name": "ETLPipeline",
+                  "line_number": 24,
+                  "methods": [
+                    {
+                      "name": "__init__",
+                      "line_number": 32,
+                      "args_count": 2,
+                      "docstring": "Initialize ETL Pipeline.\n\nArgs:\n    config_path: Path to configuration file (optional)"
+                    },
+                    {
+                      "name": "load_config",
+                      "line_number": 43,
+                      "args_count": 2,
+                      "docstring": "Load configuration from file or use defaults.\n\nArgs:\n    config_path: Path to config file\n    \nReturns:\n    Configuration dictionary"
+                    },
+                    {
+                      "name": "create_spark_session",
+                      "line_number": 96,
+                      "args_count": 1,
+                      "docstring": "Create and configure Spark session.\n\nReturns:\n    Configured SparkSession"
+                    },
+                    {
+                      "name": "log_execution_step",
+                      "line_number": 125,
+                      "args_count": 5,
+                      "docstring": "Log execution step for audit trail.\n\nArgs:\n    layer: Layer name (bronze/silver/gold)\n    status: Status (started/completed/failed)\n    duration: Execution duration in seconds\n    error: Error message if failed"
+                    },
+                    {
+                      "name": "run_bronze_layer",
+                      "line_number": 152,
+                      "args_count": 1,
+                      "docstring": "Execute Bronze layer processing.\n\nReturns:\n    True if successful, False otherwise"
+                    },
+                    {
+                      "name": "run_silver_layer",
+                      "line_number": 188,
+                      "args_count": 1,
+                      "docstring": "Execute Silver layer processing.\n\nReturns:\n    True if successful, False otherwise"
+                    },
+                    {
+                      "name": "run_gold_layer",
+                      "line_number": 222,
+                      "args_count": 1,
+                      "docstring": "Execute Gold layer processing.\n\nReturns:\n    True if successful, False otherwise"
+                    },
+                    {
+                      "name": "validate_layer",
+                      "line_number": 256,
+                      "args_count": 2,
+                      "docstring": "Validate a specific layer's data quality.\n\nArgs:\n    layer: Layer to validate (bronze/silver/gold)\n    \nReturns:\n    Validation results dictionary"
+                    },
+                    {
+                      "name": "run_pipeline",
+                      "line_number": 317,
+                      "args_count": 1,
+                      "docstring": "Execute the complete ETL pipeline.\n\nReturns:\n    True if pipeline successful, False otherwise"
+                    },
+                    {
+                      "name": "save_execution_log",
+                      "line_number": 385,
+                      "args_count": 1,
+                      "docstring": "Save execution log to file for audit purposes."
+                    }
+                  ],
+                  "docstring": "Main ETL Pipeline orchestrator for NYC Taxi data processing.\n\nManages the complete data pipeline from raw data ingestion\nthrough to analytics-ready gold layer datasets."
+                }
+              ],
+              "functions": [
+                {
+                  "name": "main",
+                  "line_number": 407,
+                  "args_count": 0,
+                  "docstring": "Main entry point for the ETL pipeline.",
+                  "is_method": false
+                },
+                {
+                  "name": "__init__",
+                  "line_number": 32,
+                  "args_count": 2,
+                  "docstring": "Initialize ETL Pipeline.\n\nArgs:\n    config_path: Path to configuration file (optional)",
+                  "is_method": false
+                },
+                {
+                  "name": "load_config",
+                  "line_number": 43,
+                  "args_count": 2,
+                  "docstring": "Load configuration from file or use defaults.\n\nArgs:\n    config_path: Path to config file\n    \nReturns:\n    Configuration dictionary",
+                  "is_method": false
+                },
+                {
+                  "name": "create_spark_session",
+                  "line_number": 96,
+                  "args_count": 1,
+                  "docstring": "Create and configure Spark session.\n\nReturns:\n    Configured SparkSession",
+                  "is_method": false
+                },
+                {
+                  "name": "log_execution_step",
+                  "line_number": 125,
+                  "args_count": 5,
+                  "docstring": "Log execution step for audit trail.\n\nArgs:\n    layer: Layer name (bronze/silver/gold)\n    status: Status (started/completed/failed)\n    duration: Execution duration in seconds\n    error: Error message if failed",
+                  "is_method": false
+                },
+                {
+                  "name": "run_bronze_layer",
+                  "line_number": 152,
+                  "args_count": 1,
+                  "docstring": "Execute Bronze layer processing.\n\nReturns:\n    True if successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "run_silver_layer",
+                  "line_number": 188,
+                  "args_count": 1,
+                  "docstring": "Execute Silver layer processing.\n\nReturns:\n    True if successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "run_gold_layer",
+                  "line_number": 222,
+                  "args_count": 1,
+                  "docstring": "Execute Gold layer processing.\n\nReturns:\n    True if successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "validate_layer",
+                  "line_number": 256,
+                  "args_count": 2,
+                  "docstring": "Validate a specific layer's data quality.\n\nArgs:\n    layer: Layer to validate (bronze/silver/gold)\n    \nReturns:\n    Validation results dictionary",
+                  "is_method": false
+                },
+                {
+                  "name": "run_pipeline",
+                  "line_number": 317,
+                  "args_count": 1,
+                  "docstring": "Execute the complete ETL pipeline.\n\nReturns:\n    True if pipeline successful, False otherwise",
+                  "is_method": false
+                },
+                {
+                  "name": "save_execution_log",
+                  "line_number": 385,
+                  "args_count": 1,
+                  "docstring": "Save execution log to file for audit purposes.",
+                  "is_method": false
+                }
+              ],
+              "imports": [
+                {
+                  "module": "os",
+                  "alias": null,
+                  "type": "import",
+                  "line_number": 9
+                },
+                {
+                  "module": "sys",
+                  "alias": null,
+                  "type": "import",
+                  "line_number": 10
+                },
+                {
+                  "module": "typing.Dict",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 11
+                },
+                {
+                  "module": "typing.List",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 11
+                },
+                {
+                  "module": "typing.Optional",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 11
+                },
+                {
+                  "module": "datetime.datetime",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 12
+                },
+                {
+                  "module": "pyspark.sql.SparkSession",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 13
+                },
+                {
+                  "module": "loguru.logger",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "yaml",
+                  "alias": null,
+                  "type": "import",
+                  "line_number": 15
+                },
+                {
+                  "module": "json",
+                  "alias": null,
+                  "type": "import",
+                  "line_number": 16
+                },
+                {
+                  "module": "bronze_layer.create_bronze_layer_job",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 19
+                },
+                {
+                  "module": "silver_layer.create_silver_layer_job",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 20
+                },
+                {
+                  "module": "gold_layer.create_gold_layer_job",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 21
+                }
+              ],
+              "constants": [],
+              "complexity_metrics": {
+                "total_nodes": 1756,
+                "function_count": 11,
+                "class_count": 1,
+                "import_count": 11
+              }
+            },
+            "analysis/nyc_taxi_analysis.py": {
+              "file_path": "analysis/nyc_taxi_analysis.py",
+              "analysis_success": true,
+              "hash": "e25bbf9f04b65b462eb5a9a03a61d12d",
+              "stats": {
+                "size_bytes": 17193,
+                "modified_time": "2025-08-11T12:49:49.188572",
+                "created_time": "2025-08-11T12:39:46.187817"
+              },
+              "syntax_valid": true,
+              "lines_of_code": 328,
+              "total_lines": 431,
+              "docstring": "NYC Taxi Data Analysis\n=====================\n\nThis script contains the required analytical queries and additional insights\nfor the NYC Taxi data project.\n\nRequired Analyses:\n1. Calculate average total_amount per month considering all trips\n2. Calculate average passenger_count per hour in May",
+              "has_docstring": true,
+              "classes": [
+                {
+                  "name": "NYCTaxiAnalyzer",
+                  "line_number": 23,
+                  "methods": [
+                    {
+                      "name": "__init__",
+                      "line_number": 28,
+                      "args_count": 2,
+                      "docstring": "Initialize analyzer.\n\nArgs:\n    spark: SparkSession instance"
+                    },
+                    {
+                      "name": "get_monthly_average_total_amount",
+                      "line_number": 37,
+                      "args_count": 1,
+                      "docstring": "Calculate average total_amount per month considering all trips.\n\nThis is one of the required analyses for the project.\n\nReturns:\n    Pandas DataFrame with monthly averages"
+                    },
+                    {
+                      "name": "get_hourly_average_passenger_count_may",
+                      "line_number": 79,
+                      "args_count": 1,
+                      "docstring": "Calculate average passenger_count per hour in May.\n\nThis is one of the required analyses for the project.\n\nReturns:\n    Pandas DataFrame with hourly averages for May"
+                    },
+                    {
+                      "name": "create_monthly_revenue_visualization",
+                      "line_number": 120,
+                      "args_count": 2,
+                      "docstring": "Create visualization for monthly average total amounts.\n\nArgs:\n    monthly_df: DataFrame with monthly data"
+                    },
+                    {
+                      "name": "create_hourly_passenger_visualization",
+                      "line_number": 168,
+                      "args_count": 2,
+                      "docstring": "Create visualization for hourly passenger counts in May.\n\nArgs:\n    hourly_df: DataFrame with hourly data"
+                    },
+                    {
+                      "name": "generate_business_insights",
+                      "line_number": 221,
+                      "args_count": 1,
+                      "docstring": "Generate additional business insights from the data.\n\nReturns:\n    Dictionary with business insights"
+                    },
+                    {
+                      "name": "export_results_to_json",
+                      "line_number": 295,
+                      "args_count": 4,
+                      "docstring": "Export all results to JSON for easy consumption.\n\nArgs:\n    monthly_df: Monthly analysis results\n    hourly_df: Hourly analysis results  \n    insights: Business insights"
+                    },
+                    {
+                      "name": "run_complete_analysis",
+                      "line_number": 330,
+                      "args_count": 1,
+                      "docstring": "Run the complete analysis pipeline."
+                    }
+                  ],
+                  "docstring": "Analyzer class for NYC Taxi data insights and required calculations."
+                }
+              ],
+              "functions": [
+                {
+                  "name": "main",
+                  "line_number": 394,
+                  "args_count": 0,
+                  "docstring": "Main function to run the analysis.",
+                  "is_method": false
+                },
+                {
+                  "name": "__init__",
+                  "line_number": 28,
+                  "args_count": 2,
+                  "docstring": "Initialize analyzer.\n\nArgs:\n    spark: SparkSession instance",
+                  "is_method": false
+                },
+                {
+                  "name": "get_monthly_average_total_amount",
+                  "line_number": 37,
+                  "args_count": 1,
+                  "docstring": "Calculate average total_amount per month considering all trips.\n\nThis is one of the required analyses for the project.\n\nReturns:\n    Pandas DataFrame with monthly averages",
+                  "is_method": false
+                },
+                {
+                  "name": "get_hourly_average_passenger_count_may",
+                  "line_number": 79,
+                  "args_count": 1,
+                  "docstring": "Calculate average passenger_count per hour in May.\n\nThis is one of the required analyses for the project.\n\nReturns:\n    Pandas DataFrame with hourly averages for May",
+                  "is_method": false
+                },
+                {
+                  "name": "create_monthly_revenue_visualization",
+                  "line_number": 120,
+                  "args_count": 2,
+                  "docstring": "Create visualization for monthly average total amounts.\n\nArgs:\n    monthly_df: DataFrame with monthly data",
+                  "is_method": false
+                },
+                {
+                  "name": "create_hourly_passenger_visualization",
+                  "line_number": 168,
+                  "args_count": 2,
+                  "docstring": "Create visualization for hourly passenger counts in May.\n\nArgs:\n    hourly_df: DataFrame with hourly data",
+                  "is_method": false
+                },
+                {
+                  "name": "generate_business_insights",
+                  "line_number": 221,
+                  "args_count": 1,
+                  "docstring": "Generate additional business insights from the data.\n\nReturns:\n    Dictionary with business insights",
+                  "is_method": false
+                },
+                {
+                  "name": "export_results_to_json",
+                  "line_number": 295,
+                  "args_count": 4,
+                  "docstring": "Export all results to JSON for easy consumption.\n\nArgs:\n    monthly_df: Monthly analysis results\n    hourly_df: Hourly analysis results  \n    insights: Business insights",
+                  "is_method": false
+                },
+                {
+                  "name": "run_complete_analysis",
+                  "line_number": 330,
+                  "args_count": 1,
+                  "docstring": "Run the complete analysis pipeline.",
+                  "is_method": false
+                }
+              ],
+              "imports": [
+                {
+                  "module": "pyspark.sql.SparkSession",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 13
+                },
+                {
+                  "module": "pyspark.sql.functions.*",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 14
+                },
+                {
+                  "module": "matplotlib.pyplot",
+                  "alias": "plt",
+                  "type": "import",
+                  "line_number": 15
+                },
+                {
+                  "module": "seaborn",
+                  "alias": "sns",
+                  "type": "import",
+                  "line_number": 16
+                },
+                {
+                  "module": "pandas",
+                  "alias": "pd",
+                  "type": "import",
+                  "line_number": 17
+                },
+                {
+                  "module": "loguru.logger",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 18
+                },
+                {
+                  "module": "json",
+                  "alias": null,
+                  "type": "import",
+                  "line_number": 19
+                },
+                {
+                  "module": "datetime.datetime",
+                  "alias": null,
+                  "type": "from_import",
+                  "line_number": 20
+                }
+              ],
+              "constants": [],
+              "complexity_metrics": {
+                "total_nodes": 1822,
+                "function_count": 9,
+                "class_count": 1,
+                "import_count": 8
+              }
+            }
+          }
+        }
+      },
+      {
+        "test_name": "required_patterns",
+        "description": "Verifica se todos os padrões obrigatórios estão implementados",
+        "timestamp": "2025-08-11T13:05:10.957978",
+        "status": "passed",
+        "details": {
+          "total_files": 4,
+          "total_patterns": 21,
+          "found_patterns": 21,
+          "missing_patterns": 0,
+          "files": {
+            "src/bronze_layer.py": {
+              "file_path": "src/bronze_layer.py",
+              "total_patterns": 4,
+              "found_patterns": 4,
+              "missing_patterns": 0,
+              "patterns": {
+                "class BronzeLayer": {
+                  "found": true,
+                  "description": "Classe principal Bronze Layer"
+                },
+                "def ingest_data": {
+                  "found": true,
+                  "description": "Método de ingestão de dados"
+                },
+                "https://d37ci6vzurychx.cloudfront.net": {
+                  "found": true,
+                  "description": "URL base NYC TLC"
+                },
+                "yellow_tripdata": {
+                  "found": true,
+                  "description": "Padrão nome arquivo taxi"
+                }
+              }
+            },
+            "src/silver_layer.py": {
+              "file_path": "src/silver_layer.py",
+              "total_patterns": 8,
+              "found_patterns": 8,
+              "missing_patterns": 0,
+              "patterns": {
+                "class SilverLayer": {
+                  "found": true,
+                  "description": "Classe principal Silver Layer"
+                },
+                "def clean_data": {
+                  "found": true,
+                  "description": "Método de limpeza"
+                },
+                "required_columns": {
+                  "found": true,
+                  "description": "Definição colunas obrigatórias"
+                },
+                "VendorID": {
+                  "found": true,
+                  "description": "Coluna VendorID"
+                },
+                "passenger_count": {
+                  "found": true,
+                  "description": "Coluna passenger_count"
+                },
+                "total_amount": {
+                  "found": true,
+                  "description": "Coluna total_amount"
+                },
+                "tpep_pickup_datetime": {
+                  "found": true,
+                  "description": "Coluna pickup datetime"
+                },
+                "tpep_dropoff_datetime": {
+                  "found": true,
+                  "description": "Coluna dropoff datetime"
+                }
+              }
+            },
+            "src/gold_layer.py": {
+              "file_path": "src/gold_layer.py",
+              "total_patterns": 5,
+              "found_patterns": 5,
+              "missing_patterns": 0,
+              "patterns": {
+                "class GoldLayer": {
+                  "found": true,
+                  "description": "Classe principal Gold Layer"
+                },
+                "def create_monthly_aggregations": {
+                  "found": true,
+                  "description": "Agregações mensais"
+                },
+                "def create_hourly_aggregations": {
+                  "found": true,
+                  "description": "Agregações horárias"
+                },
+                "gold_monthly_aggregations": {
+                  "found": true,
+                  "description": "Tabela agregações mensais"
+                },
+                "gold_hourly_aggregations_may": {
+                  "found": true,
+                  "description": "Tabela agregações horárias Maio"
+                }
+              }
+            },
+            "analysis/nyc_taxi_analysis.py": {
+              "file_path": "analysis/nyc_taxi_analysis.py",
+              "total_patterns": 4,
+              "found_patterns": 4,
+              "missing_patterns": 0,
+              "patterns": {
+                "def get_monthly_average_total_amount": {
+                  "found": true,
+                  "description": "Análise 1 obrigatória"
+                },
+                "def get_hourly_average_passenger_count_may": {
+                  "found": true,
+                  "description": "Análise 2 obrigatória"
+                },
+                "gold_monthly_aggregations": {
+                  "found": true,
+                  "description": "Query tabela mensal"
+                },
+                "gold_hourly_aggregations_may": {
+                  "found": true,
+                  "description": "Query tabela horária"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "metrics": {
+    "project_files": {
+      "total_python_files": 5,
+      "total_lines_of_code": 1924,
+      "total_classes": 5,
+      "total_functions": 44
+    },
+    "coverage": {
+      "required_files_found": 13,
+      "required_files_total": 13,
+      "required_patterns_found": 21,
+      "required_patterns_total": 21
+    }
+  }
+}

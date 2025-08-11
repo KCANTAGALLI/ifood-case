@@ -1,0 +1,55 @@
+# NYC Taxi ETL Pipeline Configuration
+# =====================================
+
+# Application settings
+app_name: "NYC_Taxi_ETL_Pipeline"
+
+# Data paths configuration
+# Adjust these paths based on your environment:
+# - For Databricks: use /dbfs/mnt/datalake/
+# - For AWS S3: use s3://your-bucket/datalake/
+# - For local testing: use /tmp/datalake/
+data_paths:
+  bronze: "/tmp/datalake/bronze"
+  silver: "/tmp/datalake/silver"
+  gold: "/tmp/datalake/gold"
+
+# Data parameters
+data_params:
+  year: 2023
+  months: [1, 2, 3, 4, 5]  # January to May
+
+# Spark configuration
+spark_config:
+  spark.sql.adaptive.enabled: "true"
+  spark.sql.adaptive.coalescePartitions.enabled: "true"
+  spark.sql.adaptive.advisoryPartitionSizeInBytes: "128MB"
+  spark.serializer: "org.apache.spark.serializer.KryoSerializer"
+  spark.sql.adaptive.skewJoin.enabled: "true"
+  spark.sql.adaptive.localShuffleReader.enabled: "true"
+
+# Execution options
+execution_options:
+  run_bronze: true
+  run_silver: true
+  run_gold: true
+  validate_each_layer: true
+
+# Data quality rules
+quality_rules:
+  passenger_count:
+    min: 0
+    max: 8
+  total_amount:
+    min: 0
+    max: 1000
+  trip_duration_minutes:
+    min: 0
+    max: 480  # 8 hours maximum
+
+# Logging configuration
+logging:
+  level: "INFO"
+  file_rotation: "1 day"
+  retention_days: 30
+

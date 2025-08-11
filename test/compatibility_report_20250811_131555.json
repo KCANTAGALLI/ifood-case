@@ -1,0 +1,135 @@
+{
+  "test_session": {
+    "timestamp": "2025-08-11T13:15:55.562247",
+    "python_version": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "win32",
+    "working_directory": "C:\\ifood-case"
+  },
+  "compatibility_status": "failed",
+  "test_results": [
+    {
+      "test_name": "import_compatibility",
+      "timestamp": "2025-08-11T13:15:54.997006",
+      "status": "failed",
+      "details": {
+        "total_modules": 4,
+        "successful_imports": 0,
+        "failed_imports": 4,
+        "modules": {
+          "bronze_layer": {
+            "status": "failed",
+            "error": "cannot import name 'logger' from 'loguru' (unknown location)"
+          },
+          "silver_layer": {
+            "status": "failed",
+            "error": "No module named 'pyspark.sql.functions'; 'pyspark.sql' is not a package"
+          },
+          "gold_layer": {
+            "status": "failed",
+            "error": "No module named 'pyspark.sql.functions'; 'pyspark.sql' is not a package"
+          },
+          "etl_pipeline": {
+            "status": "failed",
+            "error": "cannot import name 'logger' from 'loguru' (unknown location)"
+          }
+        }
+      }
+    },
+    {
+      "test_name": "code_structure",
+      "timestamp": "2025-08-11T13:15:55.541347",
+      "status": "passed",
+      "details": {
+        "total_files": 5,
+        "analyzed_files": 5,
+        "syntax_errors": 0,
+        "files": {
+          "src/bronze_layer.py": {
+            "status": "success",
+            "classes": [
+              "BronzeLayer"
+            ],
+            "functions": 6,
+            "lines": 246,
+            "has_docstring": true
+          },
+          "src/silver_layer.py": {
+            "status": "success",
+            "classes": [
+              "SilverLayer"
+            ],
+            "functions": 8,
+            "lines": 394,
+            "has_docstring": true
+          },
+          "src/gold_layer.py": {
+            "status": "success",
+            "classes": [
+              "GoldLayer"
+            ],
+            "functions": 10,
+            "lines": 415,
+            "has_docstring": true
+          },
+          "src/etl_pipeline.py": {
+            "status": "success",
+            "classes": [
+              "ETLPipeline"
+            ],
+            "functions": 11,
+            "lines": 438,
+            "has_docstring": true
+          },
+          "analysis/nyc_taxi_analysis.py": {
+            "status": "success",
+            "classes": [
+              "NYCTaxiAnalyzer"
+            ],
+            "functions": 9,
+            "lines": 431,
+            "has_docstring": true
+          }
+        }
+      }
+    },
+    {
+      "test_name": "required_analyses",
+      "timestamp": "2025-08-11T13:15:55.561061",
+      "status": "passed",
+      "details": {
+        "total_patterns": 8,
+        "found_patterns": 8,
+        "missing_patterns": 0,
+        "files": {
+          "analysis/nyc_taxi_analysis.py": {
+            "total_patterns": 4,
+            "found_patterns": 4,
+            "missing_patterns": [],
+            "patterns": {
+              "get_monthly_average_total_amount": true,
+              "get_hourly_average_passenger_count_may": true,
+              "gold_monthly_aggregations": true,
+              "gold_hourly_aggregations_may": true
+            }
+          },
+          "analysis/NYC_Taxi_Analysis.ipynb": {
+            "total_patterns": 4,
+            "found_patterns": 4,
+            "missing_patterns": [],
+            "patterns": {
+              "gold_monthly_aggregations": true,
+              "gold_hourly_aggregations_may": true,
+              "avg_total_amount": true,
+              "avg_passenger_count": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "total_tests": 3,
+    "passed_tests": 2,
+    "failed_tests": 1
+  }
+}
