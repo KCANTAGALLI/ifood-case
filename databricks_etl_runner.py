@@ -1,37 +1,13 @@
 """
-Databricks ETL Runner
-====================
+NYC Taxi ETL Pipeline - Databricks Runner
+=========================================
 
-This script is optimized for running in Databricks environment.
-It provides a simple interface to execute the complete NYC Taxi ETL pipeline.
-
-Usage:
-1. Upload this file to your Databricks workspace
-2. Run it in a notebook cell or as a job
-3. Monitor the execution through the provided status updates
+Executes the complete ETL pipeline for NYC Taxi data processing in Databricks.
 """
 
 # Databricks notebook source
-# MAGIC %md
-# MAGIC # NYC Taxi Data ETL Pipeline - Databricks Runner
-# MAGIC 
-# MAGIC This notebook runs the complete ETL pipeline for NYC Taxi data processing.
-# MAGIC 
-# MAGIC ## Steps:
-# MAGIC 1. **Setup**: Configure environment and paths
-# MAGIC 2. **Bronze**: Ingest raw data from NYC TLC
-# MAGIC 3. **Silver**: Clean and validate data
-# MAGIC 4. **Gold**: Create analytics-ready datasets
-# MAGIC 5. **Analysis**: Run required analyses
 
 # COMMAND ----------
-
-# MAGIC %md ## Step 1: Setup and Configuration
-
-# COMMAND ----------
-
-# Install required packages if not available
-# %pip install loguru pyyaml
 
 # Import required libraries
 import os
@@ -40,17 +16,16 @@ from datetime import datetime
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 
-# Configuration for Databricks environment
 DATABRICKS_CONFIG = {
     "app_name": "NYC_Taxi_ETL_Pipeline_Databricks",
     "data_paths": {
-        "bronze": "/dbfs/mnt/datalake/bronze",  # Adjust for your mount point
+        "bronze": "/dbfs/mnt/datalake/bronze",
         "silver": "/dbfs/mnt/datalake/silver",
         "gold": "/dbfs/mnt/datalake/gold"
     },
     "data_params": {
         "year": 2023,
-        "months": [1, 2, 3, 4, 5]  # January to May
+        "months": [1, 2, 3, 4, 5]
     }
 }
 
@@ -325,41 +300,8 @@ pipeline_success = print_pipeline_summary()
 
 # COMMAND ----------
 
-# MAGIC %md ## Next Steps
-# MAGIC 
-# MAGIC If the pipeline completed successfully, you can:
-# MAGIC 
-# MAGIC 1. **Explore the data**: Query the gold layer tables directly
-# MAGIC 2. **Create visualizations**: Use Databricks' built-in visualization tools
-# MAGIC 3. **Run additional analyses**: Build on the existing gold layer datasets
-# MAGIC 4. **Schedule the pipeline**: Set up automated runs using Databricks Jobs
-# MAGIC 
-# MAGIC ### Available Gold Layer Tables:
-# MAGIC - `gold_monthly_aggregations`: Monthly statistics
-# MAGIC - `gold_hourly_aggregations_may`: Hourly statistics for May
-# MAGIC - `gold_vendor_analysis`: Vendor performance metrics
-# MAGIC - `gold_weekend_analysis`: Weekend vs weekday patterns
-# MAGIC - `gold_business_kpis`: Overall business metrics
-# MAGIC 
-# MAGIC ### Sample Queries:
-# MAGIC ```sql
-# MAGIC -- Monthly trends
-# MAGIC SELECT * FROM gold_monthly_aggregations ORDER BY pickup_month;
-# MAGIC 
-# MAGIC -- Peak hours in May
-# MAGIC SELECT * FROM gold_hourly_aggregations_may ORDER BY avg_passenger_count DESC;
-# MAGIC 
-# MAGIC -- Business summary
-# MAGIC SELECT * FROM gold_business_kpis;
-# MAGIC ```
-
-# COMMAND ----------
-
-# Final status for Databricks job monitoring
 if pipeline_success:
     dbutils.notebook.exit("SUCCESS: NYC Taxi ETL Pipeline completed successfully")
 else:
     dbutils.notebook.exit("FAILED: NYC Taxi ETL Pipeline encountered errors")
-
-# COMMAND ----------
 

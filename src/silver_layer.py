@@ -370,24 +370,13 @@ def create_silver_layer_job(spark: SparkSession, silver_path: str) -> bool:
 
 
 if __name__ == "__main__":
-    # Example usage for testing
     spark = SparkSession.builder \
         .appName("NYC_Taxi_Silver_Layer") \
         .config("spark.sql.adaptive.enabled", "true") \
         .config("spark.sql.adaptive.coalescePartitions.enabled", "true") \
         .getOrCreate()
     
-    # Configure silver path (adjust for your environment)
-    silver_path = "/tmp/datalake/silver"  # For local testing
-    # silver_path = "s3://your-bucket/datalake/silver"  # For AWS S3
-    # silver_path = "/dbfs/mnt/datalake/silver"  # For Databricks
-    
+    silver_path = "/tmp/datalake/silver"
     success = create_silver_layer_job(spark, silver_path)
-    
-            if success:
-            print("Silver layer processing completed successfully")
-        else:
-            print("Silver layer processing failed")
-    
     spark.stop()
 

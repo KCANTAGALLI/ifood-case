@@ -393,8 +393,6 @@ class NYCTaxiAnalyzer:
 
 def main():
     """Main function to run the analysis."""
-    
-    # Configure logging
     logger.add(
         "analysis/analysis_{time:YYYY-MM-DD}.log",
         rotation="1 day",
@@ -402,7 +400,6 @@ def main():
         level="INFO"
     )
     
-    # Create Spark session
     spark = SparkSession.builder \
         .appName("NYC_Taxi_Analysis") \
         .config("spark.sql.adaptive.enabled", "true") \
@@ -411,16 +408,12 @@ def main():
         .getOrCreate()
     
     try:
-        # Run analysis
         analyzer = NYCTaxiAnalyzer(spark)
         analyzer.run_complete_analysis()
-        
-                    print("Analysis completed successfully")
-            
-        except Exception as e:
-            print(f"Analysis failed: {str(e)}")
+        print("Analysis completed successfully")
+    except Exception as e:
+        print(f"Analysis failed: {str(e)}")
         logger.error(f"Analysis failed: {str(e)}")
-        
     finally:
         spark.stop()
 

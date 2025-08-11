@@ -222,24 +222,13 @@ def create_bronze_layer_job(spark: SparkSession, bronze_path: str,
 
 
 if __name__ == "__main__":
-    # Example usage for testing
     spark = SparkSession.builder \
         .appName("NYC_Taxi_Bronze_Layer") \
         .config("spark.sql.adaptive.enabled", "true") \
         .config("spark.sql.adaptive.coalescePartitions.enabled", "true") \
         .getOrCreate()
     
-    # Configure bronze path (adjust for your environment)
-    bronze_path = "/tmp/datalake/bronze"  # For local testing
-    # bronze_path = "s3://your-bucket/datalake/bronze"  # For AWS S3
-    # bronze_path = "/dbfs/mnt/datalake/bronze"  # For Databricks
-    
+    bronze_path = "/tmp/datalake/bronze"
     success = create_bronze_layer_job(spark, bronze_path)
-    
-            if success:
-            print("Bronze layer ingestion completed successfully")
-        else:
-            print("Bronze layer ingestion failed")
-    
     spark.stop()
 

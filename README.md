@@ -370,11 +370,11 @@ python test/final_test_report.py
 
 ### Status dos Testes
 
-- ✅ **Estrutura**: 13/13 arquivos obrigatórios presentes
-- ✅ **Sintaxe**: Todos os arquivos Python válidos
-- ✅ **Padrões**: 21/21 padrões obrigatórios implementados
-- ✅ **Análises**: 2/2 análises obrigatórias funcionais
-- ⚠️ **Compatibilidade**: Python 3.13 + PySpark (usar Databricks)
+- **Estrutura**: 13/13 arquivos obrigatórios presentes
+- **Sintaxe**: Todos os arquivos Python válidos
+- **Padrões**: 21/21 padrões obrigatórios implementados
+- **Análises**: 2/2 análises obrigatórias funcionais
+- **Compatibilidade**: Python 3.13 + PySpark (usar Databricks)
 
 ### Logs JSON
 
@@ -399,5 +399,5 @@ Para dúvidas ou suporte:
 
 Este projeto é desenvolvido para fins educacionais e de demonstração técnica.
 
-**Desenvolvido usando PySpark e Databricks**
+**Desenvolvido com PySpark e Databricks**
 

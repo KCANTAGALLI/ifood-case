@@ -391,24 +391,13 @@ def create_gold_layer_job(spark: SparkSession, gold_path: str) -> bool:
 
 
 if __name__ == "__main__":
-    # Example usage for testing
     spark = SparkSession.builder \
         .appName("NYC_Taxi_Gold_Layer") \
         .config("spark.sql.adaptive.enabled", "true") \
         .config("spark.sql.adaptive.coalescePartitions.enabled", "true") \
         .getOrCreate()
     
-    # Configure gold path (adjust for your environment)
-    gold_path = "/tmp/datalake/gold"  # For local testing
-    # gold_path = "s3://your-bucket/datalake/gold"  # For AWS S3
-    # gold_path = "/dbfs/mnt/datalake/gold"  # For Databricks
-    
+    gold_path = "/tmp/datalake/gold"
     success = create_gold_layer_job(spark, gold_path)
-    
-            if success:
-            print("Gold layer processing completed successfully")
-        else:
-            print("Gold layer processing failed")
-    
     spark.stop()
 

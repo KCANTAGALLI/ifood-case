@@ -406,8 +406,6 @@ class ETLPipeline:
 
 def main():
     """Main entry point for the ETL pipeline."""
-    
-    # Configure logging
     logger.add(
         "pipeline_{time:YYYY-MM-DD}.log",
         rotation="1 day",
@@ -415,12 +413,10 @@ def main():
         level="INFO"
     )
     
-    # Parse command line arguments if needed
     config_path = None
     if len(sys.argv) > 1:
         config_path = sys.argv[1]
     
-    # Create and run pipeline
     pipeline = ETLPipeline(config_path)
     success = pipeline.run_pipeline()
     
