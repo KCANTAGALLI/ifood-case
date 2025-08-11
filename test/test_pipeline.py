@@ -226,7 +226,7 @@ class TestDataQuality(unittest.TestCase):
 
 def run_tests():
     """Run all tests and display results."""
-    print("🧪 Running NYC Taxi ETL Pipeline Tests")
+    print("Running NYC Taxi ETL Pipeline Tests")
     print("=" * 50)
     
     # Create test suite
@@ -244,12 +244,12 @@ def run_tests():
     # Print summary
     print("\n" + "=" * 50)
     if result.wasSuccessful():
-        print("✅ All tests passed successfully!")
+        print("All tests passed successfully!")
         print(f"   Tests run: {result.testsRun}")
         print(f"   Failures: {len(result.failures)}")
         print(f"   Errors: {len(result.errors)}")
     else:
-        print("❌ Some tests failed!")
+        print("Some tests failed!")
         print(f"   Tests run: {result.testsRun}")
         print(f"   Failures: {len(result.failures)}")
         print(f"   Errors: {len(result.errors)}")

@@ -12,7 +12,7 @@ from datetime import datetime
 def generate_final_report():
     """Gera relatório final consolidado."""
     
-    print("📋 RELATÓRIO FINAL DE TESTES - NYC TAXI PIPELINE")
+    print("RELATÓRIO FINAL DE TESTES - NYC TAXI PIPELINE")
     print("=" * 60)
     
     # Dados do projeto
@@ -215,30 +215,30 @@ def generate_final_report():
         json.dump(final_report, f, indent=2, ensure_ascii=False)
     
     # Exibir resumo
-    print(f"✅ Relatório final salvo em: {report_filename}")
-    print(f"\n🎯 STATUS FINAL: {final_report['conclusion']['overall_status']}")
-    print(f"🚀 PRONTIDÃO: {final_report['conclusion']['readiness']}")
-    print(f"📋 CONFORMIDADE: {final_report['conclusion']['compliance']}")
-    print(f"💡 RECOMENDAÇÃO: {final_report['conclusion']['recommendation']}")
+    print(f"Relatório final salvo em: {report_filename}")
+    print(f"\nSTATUS FINAL: {final_report['conclusion']['overall_status']}")
+    print(f"PRONTIDÃO: {final_report['conclusion']['readiness']}")
+    print(f"CONFORMIDADE: {final_report['conclusion']['compliance']}")
+    print(f"RECOMENDAÇÃO: {final_report['conclusion']['recommendation']}")
     
-    print(f"\n📊 MÉTRICAS FINAIS:")
-    print(f"  📁 Total de arquivos: {project_metrics['files']['total_files']}")
-    print(f"  💻 Linhas de código: {project_metrics['code']['total_lines']:,}")
-    print(f"  🏗️  Classes: {project_metrics['code']['classes']}")
-    print(f"  ⚙️  Funções: {project_metrics['code']['functions']}")
-    print(f"  📈 Cobertura: {project_metrics['coverage']['required_files']} arquivos, {project_metrics['coverage']['required_patterns']} padrões")
+    print(f"\nMÉTRICAS FINAIS:")
+    print(f"  Total de arquivos: {project_metrics['files']['total_files']}")
+    print(f"  Linhas de código: {project_metrics['code']['total_lines']:,}")
+    print(f"  Classes: {project_metrics['code']['classes']}")
+    print(f"  Funções: {project_metrics['code']['functions']}")
+    print(f"  Cobertura: {project_metrics['coverage']['required_files']} arquivos, {project_metrics['coverage']['required_patterns']} padrões")
     
-    print(f"\n✅ COMPONENTES IMPLEMENTADOS:")
+    print(f"\nCOMPONENTES IMPLEMENTADOS:")
     for component, details in components_status.items():
-        print(f"  🔧 {component}: {details['main_class']} ({details['status']})")
+        print(f"  {component}: {details['main_class']} ({details['status']})")
     
-    print(f"\n🎯 ANÁLISES OBRIGATÓRIAS:")
+    print(f"\nANÁLISES OBRIGATÓRIAS:")
     for analysis, details in required_analyses_status.items():
-        print(f"  📊 {analysis}: {details['description']} ({details['status']})")
+        print(f"  {analysis}: {details['description']} ({details['status']})")
     
     return report_filename
 
 if __name__ == "__main__":
     report_file = generate_final_report()
-    print(f"\n🎉 PROJETO NYC TAXI PIPELINE APROVADO!")
-    print(f"📄 Relatório completo: {report_file}")
+    print(f"\nPROJETO NYC TAXI PIPELINE APROVADO!")
+    print(f"Relatório completo: {report_file}")

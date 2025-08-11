@@ -48,7 +48,7 @@ def mock_spark_imports():
 
 def test_imports_with_mocks():
     """Testa imports dos módulos usando mocks."""
-    print("🔍 Testando imports com mocks...")
+    print("Testando imports com mocks...")
     
     # Configurar mocks
     mock_spark_imports()
@@ -96,7 +96,7 @@ def test_imports_with_mocks():
                     "main_class": expected_classes[module_name],
                     "has_main_class": True
                 }
-                print(f"  ✅ {module_name}: Import OK, classe {expected_classes[module_name]} encontrada")
+                print(f"  {module_name}: Import OK, classe {expected_classes[module_name]} encontrada")
             else:
                 results["details"]["modules"][module_name] = {
                     "status": "partial",
@@ -104,7 +104,7 @@ def test_imports_with_mocks():
                     "has_main_class": False,
                     "error": f"Classe {expected_classes[module_name]} não encontrada"
                 }
-                print(f"  ⚠️  {module_name}: Import OK, mas classe {expected_classes[module_name]} não encontrada")
+                print(f"  {module_name}: Import OK, mas classe {expected_classes[module_name]} não encontrada")
                 
         except Exception as e:
             results["details"]["failed_imports"] += 1
@@ -112,14 +112,14 @@ def test_imports_with_mocks():
                 "status": "failed",
                 "error": str(e)
             }
-            print(f"  ❌ {module_name}: Erro - {str(e)}")
+            print(f"  {module_name}: Erro - {str(e)}")
             results["status"] = "failed"
     
     return results
 
 def test_code_structure():
     """Testa estrutura do código sem executar."""
-    print("\n🔍 Testando estrutura do código...")
+    print("\nTestando estrutura do código...")
     
     files_to_analyze = [
         'src/bronze_layer.py',
@@ -163,7 +163,7 @@ def test_code_structure():
                     "has_docstring": ast.get_docstring(tree) is not None
                 }
                 
-                print(f"  ✅ {file_path}: {len(classes)} classes, {len(functions)} funções")
+                print(f"  {file_path}: {len(classes)} classes, {len(functions)} funções")
                 
             except SyntaxError as e:
                 results["details"]["syntax_errors"] += 1
@@ -172,7 +172,7 @@ def test_code_structure():
                     "error": str(e),
                     "line": e.lineno
                 }
-                print(f"  ❌ {file_path}: Erro de sintaxe na linha {e.lineno}")
+                print(f"  {file_path}: Erro de sintaxe na linha {e.lineno}")
                 results["status"] = "failed"
                 
             except Exception as e:
@@ -180,20 +180,20 @@ def test_code_structure():
                     "status": "error",
                     "error": str(e)
                 }
-                print(f"  ❌ {file_path}: Erro - {str(e)}")
+                print(f"  {file_path}: Erro - {str(e)}")
                 results["status"] = "failed"
         else:
             results["details"]["files"][file_path] = {
                 "status": "not_found"
             }
-            print(f"  ❌ {file_path}: Arquivo não encontrado")
+            print(f"  {file_path}: Arquivo não encontrado")
             results["status"] = "failed"
     
     return results
 
 def test_required_analyses():
     """Verifica se as análises obrigatórias estão implementadas."""
-    print("\n🔍 Testando análises obrigatórias...")
+    print("\nTestando análises obrigatórias...")
     
     analysis_patterns = {
         'analysis/nyc_taxi_analysis.py': [
@@ -240,12 +240,12 @@ def test_required_analyses():
                         file_result["found_patterns"] += 1
                         results["details"]["found_patterns"] += 1
                         file_result["patterns"][pattern] = True
-                        print(f"  ✅ {file_path}: {pattern} encontrado")
+                        print(f"  {file_path}: {pattern} encontrado")
                     else:
                         file_result["missing_patterns"].append(pattern)
                         results["details"]["missing_patterns"] += 1
                         file_result["patterns"][pattern] = False
-                        print(f"  ❌ {file_path}: {pattern} não encontrado")
+                        print(f"  {file_path}: {pattern} não encontrado")
                         results["status"] = "failed"
                 
                 results["details"]["files"][file_path] = file_result
@@ -254,13 +254,13 @@ def test_required_analyses():
                 results["details"]["files"][file_path] = {
                     "error": str(e)
                 }
-                print(f"  ❌ {file_path}: Erro - {str(e)}")
+                print(f"  {file_path}: Erro - {str(e)}")
                 results["status"] = "failed"
         else:
             results["details"]["files"][file_path] = {
                 "error": "File not found"
             }
-            print(f"  ❌ {file_path}: Arquivo não encontrado")
+            print(f"  {file_path}: Arquivo não encontrado")
             results["status"] = "failed"
     
     return results
@@ -268,7 +268,7 @@ def test_required_analyses():
 def generate_compatibility_report():
     """Gera relatório completo de compatibilidade."""
     
-    print("🧪 TESTE DE COMPATIBILIDADE - NYC TAXI PIPELINE")
+    print("TESTE DE COMPATIBILIDADE - NYC TAXI PIPELINE")
     print("=" * 60)
     print(f"Python Version: {sys.version}")
     print(f"Plataforma: {sys.platform}")
@@ -318,7 +318,7 @@ def generate_compatibility_report():
     
     # Exibir resumo
     print("\n" + "=" * 60)
-    print("📊 RESUMO DO TESTE DE COMPATIBILIDADE")
+    print("RESUMO DO TESTE DE COMPATIBILIDADE")
     print("=" * 60)
     print(f"Status Geral: {report['compatibility_status'].upper()}")
     print(f"Testes Aprovados: {report['summary']['passed_tests']}/{report['summary']['total_tests']}")
@@ -326,12 +326,12 @@ def generate_compatibility_report():
     print(f"Relatório salvo em: {report_filename}")
     
     if report["compatibility_status"] == "passed":
-        print("\n✅ PROJETO COMPATÍVEL!")
-        print("🎯 Pronto para execução no Databricks (que usa Python 3.8-3.10)")
-        print("💡 Para execução local, recomenda-se Python 3.8-3.10 com PySpark")
+        print("\nPROJETO COMPATÍVEL!")
+        print("Pronto para execução no Databricks (que usa Python 3.8-3.10)")
+        print("Para execução local, recomenda-se Python 3.8-3.10 com PySpark")
     else:
-        print("\n⚠️  PROBLEMAS DE COMPATIBILIDADE DETECTADOS")
-        print("🔧 Verifique os detalhes acima e corrija os problemas")
+        print("\nPROBLEMAS DE COMPATIBILIDADE DETECTADOS")
+        print("Verifique os detalhes acima e corrija os problemas")
     
     return report["compatibility_status"] == "passed"
 

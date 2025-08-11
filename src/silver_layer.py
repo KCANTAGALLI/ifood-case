@@ -384,10 +384,10 @@ if __name__ == "__main__":
     
     success = create_silver_layer_job(spark, silver_path)
     
-    if success:
-        print("✅ Silver layer processing completed successfully")
-    else:
-        print("❌ Silver layer processing failed")
+            if success:
+            print("Silver layer processing completed successfully")
+        else:
+            print("Silver layer processing failed")
     
     spark.stop()
 

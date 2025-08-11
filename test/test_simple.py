@@ -11,7 +11,7 @@ import importlib.util
 
 def test_project_structure():
     """Testa se a estrutura do projeto está correta."""
-    print("🔍 Testando estrutura do projeto...")
+    print("Testando estrutura do projeto...")
     
     required_files = [
         'src/__init__.py',
@@ -32,15 +32,15 @@ def test_project_structure():
             missing_files.append(file_path)
     
     if missing_files:
-        print(f"❌ Arquivos faltando: {missing_files}")
+        print(f"Arquivos faltando: {missing_files}")
         return False
     else:
-        print("✅ Estrutura do projeto está completa")
+        print("Estrutura do projeto está completa")
         return True
 
 def test_imports():
     """Testa se os módulos podem ser importados."""
-    print("\n🔍 Testando imports dos módulos...")
+    print("\nTestando imports dos módulos...")
     
     # Adicionar src ao path
     sys.path.append(os.path.join(os.getcwd(), 'src'))
@@ -61,18 +61,18 @@ def test_imports():
             if spec and spec.loader:
                 module = importlib.util.module_from_spec(spec)
                 # Não executamos o módulo, apenas verificamos se pode ser carregado
-                print(f"✅ {module_name}: Import OK")
+                print(f"{module_name}: Import OK")
                 success_count += 1
             else:
-                print(f"❌ {module_name}: Não foi possível criar spec")
+                print(f"{module_name}: Não foi possível criar spec")
         except Exception as e:
-            print(f"❌ {module_name}: Erro - {str(e)}")
+            print(f"{module_name}: Erro - {str(e)}")
     
     return success_count == len(modules_to_test)
 
 def test_required_functions():
     """Testa se as funções principais existem nos módulos."""
-    print("\n🔍 Testando presença de funções principais...")
+    print("\nTestando presença de funções principais...")
     
     # Adicionar src ao path
     sys.path.append(os.path.join(os.getcwd(), 'src'))
@@ -94,20 +94,20 @@ def test_required_functions():
                 
             for item in required_items:
                 if f"class {item}" in content or f"def {item}" in content:
-                    print(f"✅ {file_name}: {item} encontrado")
+                    print(f"{file_name}: {item} encontrado")
                 else:
-                    print(f"❌ {file_name}: {item} não encontrado")
+                    print(f"{file_name}: {item} não encontrado")
                     all_passed = False
                     
         except Exception as e:
-            print(f"❌ Erro ao verificar {file_name}: {str(e)}")
+            print(f"Erro ao verificar {file_name}: {str(e)}")
             all_passed = False
     
     return all_passed
 
 def test_required_columns():
     """Testa se as colunas obrigatórias estão definidas."""
-    print("\n🔍 Testando definição de colunas obrigatórias...")
+    print("\nTestando definição de colunas obrigatórias...")
     
     required_columns = [
         'VendorID',
@@ -124,20 +124,20 @@ def test_required_columns():
         all_found = True
         for col in required_columns:
             if f"'{col}'" in content or f'"{col}"' in content:
-                print(f"✅ Coluna obrigatória encontrada: {col}")
+                print(f"Coluna obrigatória encontrada: {col}")
             else:
-                print(f"❌ Coluna obrigatória não encontrada: {col}")
+                print(f"Coluna obrigatória não encontrada: {col}")
                 all_found = False
         
         return all_found
         
     except Exception as e:
-        print(f"❌ Erro ao verificar colunas: {str(e)}")
+        print(f"Erro ao verificar colunas: {str(e)}")
         return False
 
 def test_analysis_queries():
     """Testa se as queries de análise obrigatórias estão implementadas."""
-    print("\n🔍 Testando queries de análises obrigatórias...")
+    print("\nTestando queries de análises obrigatórias...")
     
     files_to_check = [
         'analysis/nyc_taxi_analysis.py',
@@ -159,25 +159,25 @@ def test_analysis_queries():
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
                 
-                print(f"\n📄 Verificando {file_path}:")
+                print(f"\nVerificando {file_path}:")
                 for pattern in required_patterns:
                     if pattern in content:
-                        print(f"✅ Padrão encontrado: {pattern}")
+                        print(f"Padrão encontrado: {pattern}")
                     else:
-                        print(f"❌ Padrão não encontrado: {pattern}")
+                        print(f"Padrão não encontrado: {pattern}")
                         all_found = False
             except Exception as e:
-                print(f"❌ Erro ao verificar {file_path}: {str(e)}")
+                print(f"Erro ao verificar {file_path}: {str(e)}")
                 all_found = False
         else:
-            print(f"❌ Arquivo não encontrado: {file_path}")
+            print(f"Arquivo não encontrado: {file_path}")
             all_found = False
     
     return all_found
 
 def run_all_tests():
     """Executa todos os testes."""
-    print("🧪 INICIANDO TESTES LOCAIS DO PIPELINE NYC TAXI")
+    print("INICIANDO TESTES LOCAIS DO PIPELINE NYC TAXI")
     print("=" * 60)
     
     tests = [
@@ -196,14 +196,14 @@ def run_all_tests():
         try:
             if test_func():
                 passed_tests += 1
-                print(f"✅ {test_name}: PASSOU")
+                print(f"{test_name}: PASSOU")
             else:
-                print(f"❌ {test_name}: FALHOU")
+                print(f"{test_name}: FALHOU")
         except Exception as e:
-            print(f"❌ {test_name}: ERRO - {str(e)}")
+            print(f"{test_name}: ERRO - {str(e)}")
     
     print("\n" + "="*60)
-    print("📊 RESUMO DOS TESTES")
+    print("RESUMO DOS TESTES")
     print("="*60)
     print(f"Testes executados: {total_tests}")
     print(f"Testes aprovados: {passed_tests}")
@@ -211,12 +211,12 @@ def run_all_tests():
     print(f"Taxa de sucesso: {passed_tests/total_tests*100:.1f}%")
     
     if passed_tests == total_tests:
-        print("\n🎉 TODOS OS TESTES PASSARAM!")
-        print("✅ O pipeline está pronto para execução no Databricks")
+        print("\nTODOS OS TESTES PASSARAM!")
+        print("O pipeline está pronto para execução no Databricks")
         return True
     else:
-        print(f"\n⚠️  {total_tests - passed_tests} TESTE(S) FALHARAM")
-        print("❌ Verifique os problemas acima antes de executar no Databricks")
+        print(f"\n{total_tests - passed_tests} TESTE(S) FALHARAM")
+        print("Verifique os problemas acima antes de executar no Databricks")
         return False
 
 if __name__ == "__main__":

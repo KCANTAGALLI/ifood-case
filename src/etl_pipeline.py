@@ -425,10 +425,10 @@ def main():
     success = pipeline.run_pipeline()
     
     if success:
-        print("✅ ETL Pipeline completed successfully")
+        print("ETL Pipeline completed successfully")
         sys.exit(0)
     else:
-        print("❌ ETL Pipeline failed")
+        print("ETL Pipeline failed")
         sys.exit(1)
 
 

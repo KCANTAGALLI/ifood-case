@@ -405,10 +405,10 @@ if __name__ == "__main__":
     
     success = create_gold_layer_job(spark, gold_path)
     
-    if success:
-        print("✅ Gold layer processing completed successfully")
-    else:
-        print("❌ Gold layer processing failed")
+            if success:
+            print("Gold layer processing completed successfully")
+        else:
+            print("Gold layer processing failed")
     
     spark.stop()
 

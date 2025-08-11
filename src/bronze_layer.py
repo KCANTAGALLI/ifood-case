@@ -236,10 +236,10 @@ if __name__ == "__main__":
     
     success = create_bronze_layer_job(spark, bronze_path)
     
-    if success:
-        print("✅ Bronze layer ingestion completed successfully")
-    else:
-        print("❌ Bronze layer ingestion failed")
+            if success:
+            print("Bronze layer ingestion completed successfully")
+        else:
+            print("Bronze layer ingestion failed")
     
     spark.stop()
 

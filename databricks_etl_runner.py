@@ -54,7 +54,7 @@ DATABRICKS_CONFIG = {
     }
 }
 
-print("🚀 NYC Taxi ETL Pipeline - Databricks Edition")
+print("NYC Taxi ETL Pipeline - Databricks Edition")
 print("=" * 50)
 print(f"Spark Version: {spark.version}")
 print(f"Configuration: {DATABRICKS_CONFIG}")
@@ -71,7 +71,7 @@ print(f"Configuration: {DATABRICKS_CONFIG}")
 def run_bronze_layer_databricks():
     """Execute Bronze layer in Databricks environment."""
     
-    print("🥉 Starting Bronze Layer Processing...")
+    print("Starting Bronze Layer Processing...")
     
     try:
         # Import bronze layer functionality
@@ -91,16 +91,16 @@ def run_bronze_layer_databricks():
         if success:
             # Validate results
             validation = bronze_processor.validate_bronze_data()
-            print(f"✅ Bronze Layer Completed Successfully")
+            print(f"Bronze Layer Completed Successfully")
             print(f"   Files processed: {validation.get('total_files', 0)}")
             print(f"   Total records: {validation.get('total_records', 0):,}")
             return True
         else:
-            print("❌ Bronze Layer Failed")
+            print("Bronze Layer Failed")
             return False
             
     except Exception as e:
-        print(f"❌ Bronze Layer Error: {str(e)}")
+        print(f"Bronze Layer Error: {str(e)}")
         return False
 
 # Execute Bronze Layer
@@ -117,10 +117,10 @@ bronze_success = run_bronze_layer_databricks()
 def run_silver_layer_databricks():
     """Execute Silver layer in Databricks environment."""
     
-    print("🥈 Starting Silver Layer Processing...")
+    print("Starting Silver Layer Processing...")
     
     if not bronze_success:
-        print("❌ Skipping Silver Layer - Bronze Layer failed")
+        print("Skipping Silver Layer - Bronze Layer failed")
         return False
     
     try:
@@ -139,15 +139,15 @@ def run_silver_layer_databricks():
             silver_df = spark.table("silver_taxi_trips_clean")
             record_count = silver_df.count()
             
-            print(f"✅ Silver Layer Completed Successfully")
+            print(f"Silver Layer Completed Successfully")
             print(f"   Clean records: {record_count:,}")
             return True
         else:
-            print("❌ Silver Layer Failed")
+            print("Silver Layer Failed")
             return False
             
     except Exception as e:
-        print(f"❌ Silver Layer Error: {str(e)}")
+        print(f"Silver Layer Error: {str(e)}")
         return False
 
 # Execute Silver Layer
@@ -164,10 +164,10 @@ silver_success = run_silver_layer_databricks()
 def run_gold_layer_databricks():
     """Execute Gold layer in Databricks environment."""
     
-    print("🥇 Starting Gold Layer Processing...")
+    print("Starting Gold Layer Processing...")
     
     if not silver_success:
-        print("❌ Skipping Gold Layer - Silver Layer failed")
+        print("Skipping Gold Layer - Silver Layer failed")
         return False
     
     try:
@@ -182,7 +182,7 @@ def run_gold_layer_databricks():
         success = gold_processor.process_to_gold()
         
         if success:
-            print(f"✅ Gold Layer Completed Successfully")
+            print(f"Gold Layer Completed Successfully")
             
             # Show available tables
             tables = spark.sql("SHOW TABLES").collect()
@@ -195,11 +195,11 @@ def run_gold_layer_databricks():
             
             return True
         else:
-            print("❌ Gold Layer Failed")
+            print("Gold Layer Failed")
             return False
             
     except Exception as e:
-        print(f"❌ Gold Layer Error: {str(e)}")
+        print(f"Gold Layer Error: {str(e)}")
         return False
 
 # Execute Gold Layer
@@ -214,15 +214,15 @@ gold_success = run_gold_layer_databricks()
 def run_required_analyses():
     """Execute the required analyses."""
     
-    print("📊 Running Required Analyses...")
+    print("Running Required Analyses...")
     
     if not gold_success:
-        print("❌ Skipping Analyses - Gold Layer failed")
+        print("Skipping Analyses - Gold Layer failed")
         return False
     
     try:
         # Analysis 1: Monthly average total_amount
-        print("\n1️⃣ Monthly Average Total Amount:")
+        print("\n1. Monthly Average Total Amount:")
         monthly_query = """
         SELECT 
             pickup_month,
@@ -246,7 +246,7 @@ def run_required_analyses():
             print(f"   {row.month_name}: ${row.avg_total_amount:.2f} (from {row.total_trips:,} trips)")
         
         # Analysis 2: Hourly average passenger_count in May
-        print("\n2️⃣ Hourly Average Passenger Count (May):")
+        print("\n2. Hourly Average Passenger Count (May):")
         hourly_query = """
         SELECT 
             pickup_hour,
@@ -265,14 +265,14 @@ def run_required_analyses():
             hour_display = f"{row.pickup_hour:02d}:00"
             print(f"   {hour_display}: {row.avg_passenger_count:.2f} passengers (from {row.total_trips:,} trips)")
         
-        print(f"\n✅ Required Analyses Completed Successfully")
+        print(f"\nRequired Analyses Completed Successfully")
         print(f"   Monthly data points: {len(monthly_results)}")
         print(f"   Hourly data points: {len(hourly_results)}")
         
         return True
         
     except Exception as e:
-        print(f"❌ Analysis Error: {str(e)}")
+        print(f"Analysis Error: {str(e)}")
         return False
 
 # Execute Required Analyses
@@ -288,14 +288,14 @@ def print_pipeline_summary():
     """Print a summary of the pipeline execution."""
     
     print("\n" + "=" * 60)
-    print("🎯 NYC TAXI ETL PIPELINE - EXECUTION SUMMARY")
+    print("NYC TAXI ETL PIPELINE - EXECUTION SUMMARY")
     print("=" * 60)
     
     # Status indicators
-    bronze_status = "✅ SUCCESS" if bronze_success else "❌ FAILED"
-    silver_status = "✅ SUCCESS" if silver_success else "❌ FAILED"
-    gold_status = "✅ SUCCESS" if gold_success else "❌ FAILED"
-    analysis_status = "✅ SUCCESS" if analysis_success else "❌ FAILED"
+    bronze_status = "SUCCESS" if bronze_success else "FAILED"
+    silver_status = "SUCCESS" if silver_success else "FAILED"
+    gold_status = "SUCCESS" if gold_success else "FAILED"
+    analysis_status = "SUCCESS" if analysis_success else "FAILED"
     
     print(f"Bronze Layer (Ingestion):     {bronze_status}")
     print(f"Silver Layer (Cleaning):      {silver_status}")
@@ -304,17 +304,17 @@ def print_pipeline_summary():
     
     # Overall status
     overall_success = all([bronze_success, silver_success, gold_success, analysis_success])
-    overall_status = "✅ COMPLETE" if overall_success else "❌ INCOMPLETE"
+    overall_status = "COMPLETE" if overall_success else "INCOMPLETE"
     
     print(f"\nOverall Pipeline Status:      {overall_status}")
     
     if overall_success:
-        print("\n🎉 All requirements have been successfully fulfilled!")
-        print("📊 The required analyses are now available in the Gold layer tables.")
-        print("📈 You can run additional queries on the gold_* tables for further insights.")
+        print("\nAll requirements have been successfully fulfilled!")
+        print("The required analyses are now available in the Gold layer tables.")
+        print("You can run additional queries on the gold_* tables for further insights.")
     else:
-        print("\n⚠️  Some steps failed. Please check the error messages above.")
-        print("🔍 Review the logs and retry the failed steps.")
+        print("\nSome steps failed. Please check the error messages above.")
+        print("Review the logs and retry the failed steps.")
     
     print("=" * 60)
     

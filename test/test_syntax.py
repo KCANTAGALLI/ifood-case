@@ -58,7 +58,7 @@ def analyze_file_structure(file_path):
 
 def run_syntax_tests():
     """Executa testes de sintaxe em todos os arquivos Python."""
-    print("🔍 TESTE DE SINTAXE E ESTRUTURA")
+    print("TESTE DE SINTAXE E ESTRUTURA")
     print("=" * 50)
     
     python_files = [
@@ -76,36 +76,36 @@ def run_syntax_tests():
     
     for file_path in python_files:
         if os.path.exists(file_path):
-            print(f"\n📄 Testando: {file_path}")
+            print(f"\nTestando: {file_path}")
             
             # Teste de sintaxe
             syntax_ok, syntax_msg = test_python_syntax(file_path)
             if syntax_ok:
-                print(f"  ✅ Sintaxe: {syntax_msg}")
+                print(f"  Sintaxe: {syntax_msg}")
             else:
-                print(f"  ❌ Sintaxe: {syntax_msg}")
+                print(f"  Sintaxe: {syntax_msg}")
                 all_passed = False
                 continue
             
             # Análise de estrutura
             struct_ok, struct_info = analyze_file_structure(file_path)
             if struct_ok:
-                print(f"  ✅ Classes: {len(struct_info['classes'])} ({', '.join(struct_info['classes'][:3])})")
-                print(f"  ✅ Funções: {len(struct_info['functions'])} (incluindo métodos)")
-                print(f"  ✅ Imports: {len(struct_info['imports'])}")
-                print(f"  ✅ Docstring: {'Sim' if struct_info['docstring'] else 'Não'}")
+                print(f"  Classes: {len(struct_info['classes'])} ({', '.join(struct_info['classes'][:3])})")
+                print(f"  Funções: {len(struct_info['functions'])} (incluindo métodos)")
+                print(f"  Imports: {len(struct_info['imports'])}")
+                print(f"  Docstring: {'Sim' if struct_info['docstring'] else 'Não'}")
             else:
-                print(f"  ❌ Estrutura: {struct_info}")
+                print(f"  Estrutura: {struct_info}")
                 all_passed = False
         else:
-            print(f"❌ Arquivo não encontrado: {file_path}")
+            print(f"Arquivo não encontrado: {file_path}")
             all_passed = False
     
     return all_passed
 
 def test_required_patterns():
     """Testa se os padrões obrigatórios estão presentes."""
-    print(f"\n🔍 VERIFICAÇÃO DE PADRÕES OBRIGATÓRIOS")
+    print(f"\nVERIFICAÇÃO DE PADRÕES OBRIGATÓRIOS")
     print("=" * 50)
     
     patterns_to_check = [
@@ -140,26 +140,26 @@ def test_required_patterns():
     
     for file_path, patterns in patterns_to_check:
         if os.path.exists(file_path):
-            print(f"\n📄 Verificando padrões em: {file_path}")
+            print(f"\nVerificando padrões em: {file_path}")
             
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
             for pattern in patterns:
                 if pattern in content:
-                    print(f"  ✅ Encontrado: {pattern}")
+                    print(f"  Encontrado: {pattern}")
                 else:
-                    print(f"  ❌ Não encontrado: {pattern}")
+                    print(f"  Não encontrado: {pattern}")
                     all_found = False
         else:
-            print(f"❌ Arquivo não encontrado: {file_path}")
+            print(f"Arquivo não encontrado: {file_path}")
             all_found = False
     
     return all_found
 
 def main():
     """Função principal."""
-    print("🧪 TESTE COMPLETO DE VALIDAÇÃO DO PROJETO")
+    print("TESTE COMPLETO DE VALIDAÇÃO DO PROJETO")
     print("=" * 60)
     
     # Teste de sintaxe
@@ -170,29 +170,29 @@ def main():
     
     # Resumo final
     print(f"\n{'='*60}")
-    print("📊 RESUMO FINAL DOS TESTES")
+    print("RESUMO FINAL DOS TESTES")
     print("="*60)
     
     if syntax_ok:
-        print("✅ Sintaxe: Todos os arquivos têm sintaxe válida")
+        print("Sintaxe: Todos os arquivos têm sintaxe válida")
     else:
-        print("❌ Sintaxe: Alguns arquivos têm problemas de sintaxe")
+        print("Sintaxe: Alguns arquivos têm problemas de sintaxe")
     
     if patterns_ok:
-        print("✅ Padrões: Todos os padrões obrigatórios encontrados")
+        print("Padrões: Todos os padrões obrigatórios encontrados")
     else:
-        print("❌ Padrões: Alguns padrões obrigatórios não encontrados")
+        print("Padrões: Alguns padrões obrigatórios não encontrados")
     
     overall_success = syntax_ok and patterns_ok
     
     if overall_success:
-        print("\n🎉 PROJETO APROVADO!")
-        print("✅ O código está pronto para execução no Databricks")
-        print("✅ Todas as análises obrigatórias estão implementadas")
-        print("✅ A arquitetura Bronze-Silver-Gold está completa")
+        print("\nPROJETO APROVADO!")
+        print("O código está pronto para execução no Databricks")
+        print("Todas as análises obrigatórias estão implementadas")
+        print("A arquitetura Bronze-Silver-Gold está completa")
     else:
-        print("\n⚠️  PROJETO PRECISA DE AJUSTES")
-        print("❌ Verifique os problemas reportados acima")
+        print("\nPROJETO PRECISA DE AJUSTES")
+        print("Verifique os problemas reportados acima")
     
     return overall_success
 

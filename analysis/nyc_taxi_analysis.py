@@ -362,10 +362,10 @@ class NYCTaxiAnalyzer:
             logger.info("="*60)
             
             # Print key findings
-            print("\n🎯 KEY FINDINGS:")
+            print("\nKEY FINDINGS:")
             print("="*50)
             
-            print("\n📊 REQUIRED ANALYSIS RESULTS:")
+            print("\nREQUIRED ANALYSIS RESULTS:")
             print("\n1. Monthly Average Total Amount:")
             for _, row in monthly_df.iterrows():
                 print(f"   {row['month_name']}: ${row['avg_total_amount']:.2f}")
@@ -376,15 +376,15 @@ class NYCTaxiAnalyzer:
             print(f"   Full hourly data available in analysis results")
             
             if 'overall_metrics' in insights:
-                print(f"\n💼 BUSINESS SUMMARY:")
+                print(f"\nBUSINESS SUMMARY:")
                 metrics = insights['overall_metrics']
                 print(f"   Total trips: {metrics['total_trips']:,}")
                 print(f"   Total revenue: {metrics['total_revenue']}")
                 print(f"   Average fare: {metrics['average_fare']}")
                 print(f"   Average passengers: {metrics['average_passengers']}")
             
-            print(f"\n📈 All detailed results saved to: analysis/nyc_taxi_analysis_results.json")
-            print(f"📊 Visualizations saved to: analysis/")
+            print(f"\nAll detailed results saved to: analysis/nyc_taxi_analysis_results.json")
+            print(f"Visualizations saved to: analysis/")
             
         except Exception as e:
             logger.error(f"Analysis failed: {str(e)}")
@@ -415,10 +415,10 @@ def main():
         analyzer = NYCTaxiAnalyzer(spark)
         analyzer.run_complete_analysis()
         
-        print("✅ Analysis completed successfully")
-        
-    except Exception as e:
-        print(f"❌ Analysis failed: {str(e)}")
+                    print("Analysis completed successfully")
+            
+        except Exception as e:
+            print(f"Analysis failed: {str(e)}")
         logger.error(f"Analysis failed: {str(e)}")
         
     finally:

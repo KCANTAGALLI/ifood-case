@@ -388,7 +388,7 @@ def generate_system_info():
 def generate_complete_test_log():
     """Gera log completo dos testes em JSON."""
     
-    print("🔄 Gerando log detalhado dos testes...")
+    print("Gerando log detalhado dos testes...")
     
     # Executar todos os testes
     structure_test = test_project_structure()
@@ -455,7 +455,7 @@ def generate_complete_test_log():
 
 def main():
     """Função principal."""
-    print("📊 GERADOR DE LOG JSON DOS TESTES")
+    print("GERADOR DE LOG JSON DOS TESTES")
     print("=" * 50)
     
     # Gerar log completo
@@ -482,10 +482,10 @@ def main():
         json.dump(summary_data, f, indent=2, ensure_ascii=False)
     
     # Exibir resultados
-    print(f"✅ Log completo salvo em: {log_filename}")
-    print(f"✅ Resumo salvo em: {summary_filename}")
+    print(f"Log completo salvo em: {log_filename}")
+    print(f"Resumo salvo em: {summary_filename}")
     
-    print(f"\n📊 RESUMO DOS TESTES:")
+    print(f"\nRESUMO DOS TESTES:")
     print(f"Status Geral: {log_data['test_results']['summary']['overall_status'].upper()}")
     print(f"Testes Aprovados: {log_data['test_results']['summary']['passed_tests']}")
     print(f"Testes Falharam: {log_data['test_results']['summary']['failed_tests']}")
