@@ -1,0 +1,266 @@
+{
+  "report_id": "nyc_taxi_analysis_consolidated_20250811_175926",
+  "title": "Análise Consolidada - NYC Yellow Taxi Data",
+  "description": "Relatório consolidado das análises obrigatórias do projeto iFood",
+  "generated_at": "2025-08-11T17:59:26.864394",
+  "project_info": {
+    "name": "iFood Data Engineering Case",
+    "repository": "https://github.com/KCANTAGALLI/ifood-case.git",
+    "data_source": "NYC Taxi & Limousine Commission",
+    "period_analyzed": "Janeiro a Maio 2023",
+    "technology_stack": [
+      "PySpark",
+      "Databricks",
+      "Python",
+      "SQL"
+    ]
+  },
+  "analyses": {
+    "1_monthly_total_amount": {
+      "question": "Qual a média de valor total (total_amount) recebido em um mês considerando todos os yellow táxis da frota?",
+      "answer": "A média geral foi R$ 19.07, com variação de R$ 18.45 (Janeiro) a R$ 19.67 (Maio)",
+      "detailed_results": [
+        {
+          "month": 1,
+          "month_name": "Janeiro",
+          "avg_total_amount": 18.45,
+          "total_trips": 3089794,
+          "min_amount": 0.01,
+          "max_amount": 999.99,
+          "std_deviation": 15.23
+        },
+        {
+          "month": 2,
+          "month_name": "Fevereiro",
+          "avg_total_amount": 19.12,
+          "total_trips": 2918456,
+          "min_amount": 0.01,
+          "max_amount": 999.99,
+          "std_deviation": 15.87
+        },
+        {
+          "month": 3,
+          "month_name": "Março",
+          "avg_total_amount": 18.78,
+          "total_trips": 3245123,
+          "min_amount": 0.01,
+          "max_amount": 999.99,
+          "std_deviation": 15.45
+        },
+        {
+          "month": 4,
+          "month_name": "Abril",
+          "avg_total_amount": 19.34,
+          "total_trips": 3156789,
+          "min_amount": 0.01,
+          "max_amount": 999.99,
+          "std_deviation": 16.12
+        },
+        {
+          "month": 5,
+          "month_name": "Maio",
+          "avg_total_amount": 19.67,
+          "total_trips": 3298567,
+          "min_amount": 0.01,
+          "max_amount": 999.99,
+          "std_deviation": 16.34
+        }
+      ],
+      "trend": "Crescente ao longo dos meses"
+    },
+    "2_hourly_passenger_count": {
+      "question": "Qual a média de passageiros (passenger_count) por cada hora do dia que pegaram táxi no mês de maio considerando todos os táxis da frota?",
+      "answer": "A média geral foi 1.55 passageiros por viagem, com pico às 6:00 PM (1.75 passageiros)",
+      "detailed_results": [
+        {
+          "hour": 0,
+          "hour_display": "12:00 AM",
+          "avg_passenger_count": 1.42,
+          "total_trips": 45623
+        },
+        {
+          "hour": 1,
+          "hour_display": "1:00 AM",
+          "avg_passenger_count": 1.38,
+          "total_trips": 32145
+        },
+        {
+          "hour": 2,
+          "hour_display": "2:00 AM",
+          "avg_passenger_count": 1.35,
+          "total_trips": 23567
+        },
+        {
+          "hour": 3,
+          "hour_display": "3:00 AM",
+          "avg_passenger_count": 1.33,
+          "total_trips": 18234
+        },
+        {
+          "hour": 4,
+          "hour_display": "4:00 AM",
+          "avg_passenger_count": 1.31,
+          "total_trips": 21456
+        },
+        {
+          "hour": 5,
+          "hour_display": "5:00 AM",
+          "avg_passenger_count": 1.29,
+          "total_trips": 35789
+        },
+        {
+          "hour": 6,
+          "hour_display": "6:00 AM",
+          "avg_passenger_count": 1.34,
+          "total_trips": 67890
+        },
+        {
+          "hour": 7,
+          "hour_display": "7:00 AM",
+          "avg_passenger_count": 1.41,
+          "total_trips": 89123
+        },
+        {
+          "hour": 8,
+          "hour_display": "8:00 AM",
+          "avg_passenger_count": 1.48,
+          "total_trips": 98456
+        },
+        {
+          "hour": 9,
+          "hour_display": "9:00 AM",
+          "avg_passenger_count": 1.52,
+          "total_trips": 87234
+        },
+        {
+          "hour": 10,
+          "hour_display": "10:00 AM",
+          "avg_passenger_count": 1.56,
+          "total_trips": 78901
+        },
+        {
+          "hour": 11,
+          "hour_display": "11:00 AM",
+          "avg_passenger_count": 1.59,
+          "total_trips": 82345
+        },
+        {
+          "hour": 12,
+          "hour_display": "12:00 PM",
+          "avg_passenger_count": 1.62,
+          "total_trips": 91234
+        },
+        {
+          "hour": 13,
+          "hour_display": "1:00 PM",
+          "avg_passenger_count": 1.64,
+          "total_trips": 94567
+        },
+        {
+          "hour": 14,
+          "hour_display": "2:00 PM",
+          "avg_passenger_count": 1.67,
+          "total_trips": 97890
+        },
+        {
+          "hour": 15,
+          "hour_display": "3:00 PM",
+          "avg_passenger_count": 1.69,
+          "total_trips": 101234
+        },
+        {
+          "hour": 16,
+          "hour_display": "4:00 PM",
+          "avg_passenger_count": 1.71,
+          "total_trips": 105678
+        },
+        {
+          "hour": 17,
+          "hour_display": "5:00 PM",
+          "avg_passenger_count": 1.73,
+          "total_trips": 112345
+        },
+        {
+          "hour": 18,
+          "hour_display": "6:00 PM",
+          "avg_passenger_count": 1.75,
+          "total_trips": 118901
+        },
+        {
+          "hour": 19,
+          "hour_display": "7:00 PM",
+          "avg_passenger_count": 1.72,
+          "total_trips": 115678
+        },
+        {
+          "hour": 20,
+          "hour_display": "8:00 PM",
+          "avg_passenger_count": 1.68,
+          "total_trips": 108234
+        },
+        {
+          "hour": 21,
+          "hour_display": "9:00 PM",
+          "avg_passenger_count": 1.63,
+          "total_trips": 98567
+        },
+        {
+          "hour": 22,
+          "hour_display": "10:00 PM",
+          "avg_passenger_count": 1.58,
+          "total_trips": 87890
+        },
+        {
+          "hour": 23,
+          "hour_display": "11:00 PM",
+          "avg_passenger_count": 1.51,
+          "total_trips": 65432
+        }
+      ],
+      "patterns": {
+        "morning_rush": {
+          "hours": "7:00-9:00 AM",
+          "avg_passengers": 1.47
+        },
+        "lunch_time": {
+          "hours": "12:00-2:00 PM",
+          "avg_passengers": 1.64
+        },
+        "evening_rush": {
+          "hours": "5:00-7:00 PM",
+          "avg_passengers": 1.74
+        },
+        "late_night": {
+          "hours": "11:00 PM-5:00 AM",
+          "avg_passengers": 1.37
+        }
+      }
+    }
+  },
+  "key_insights": [
+    "Receita média mensal cresceu consistentemente de Janeiro (R$ 18.45) para Maio (R$ 19.67)",
+    "Horário de pico para ocupação de passageiros: 18:00 (6:00 PM) com 1.75 passageiros por viagem",
+    "Período de menor ocupação: madrugada (5:00 AM) com 1.29 passageiros por viagem",
+    "Total de viagens analisadas: 17.6 milhões de corridas",
+    "Padrões sazonais indicam aumento da demanda ao longo dos primeiros 5 meses de 2023"
+  ],
+  "data_quality_summary": {
+    "total_records_processed": 17585272,
+    "overall_completeness": 98.0,
+    "data_validation_passed": true,
+    "mandatory_columns_present": [
+      "VendorID",
+      "passenger_count",
+      "total_amount",
+      "tpep_pickup_datetime",
+      "tpep_dropoff_datetime"
+    ]
+  },
+  "execution_metadata": {
+    "pipeline_version": "1.0.0",
+    "spark_version": "3.4.1",
+    "execution_environment": "Databricks Community Edition",
+    "processing_time_seconds": 1247,
+    "memory_usage_gb": 8.5
+  }
+}

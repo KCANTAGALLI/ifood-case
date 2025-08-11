@@ -340,16 +340,16 @@ class NYCTaxiAnalysisLogger:
         print("RESUMO DAS ANÁLISES OBRIGATÓRIAS - NYC TAXI DATA")
         print("="*80)
         
-        print("\n📊 ANÁLISE 1: MÉDIA DE VALOR TOTAL POR MÊS")
+        print("\nANÁLISE 1: MÉDIA DE VALOR TOTAL POR MÊS")
         print("-" * 50)
         print(f"Pergunta: {monthly_data['description']}")
         print(f"Período: {monthly_data['period']}")
         print(f"Resposta: Média geral de R$ {monthly_data['summary']['overall_average']:.2f}")
         print("\nDetalhamento por mês:")
         for result in monthly_data['results']:
-            print(f"  • {result['month_name']}: R$ {result['avg_total_amount']:.2f} ({result['total_trips']:,} viagens)")
+            print(f"  - {result['month_name']}: R$ {result['avg_total_amount']:.2f} ({result['total_trips']:,} viagens)")
         
-        print("\n📊 ANÁLISE 2: MÉDIA DE PASSAGEIROS POR HORA (MAIO)")
+        print("\nANÁLISE 2: MÉDIA DE PASSAGEIROS POR HORA (MAIO)")
         print("-" * 50)
         print(f"Pergunta: {hourly_data['description']}")
         print(f"Período: {hourly_data['period']}")
@@ -357,17 +357,17 @@ class NYCTaxiAnalysisLogger:
         print(f"Horário de pico: {hourly_data['summary']['peak_hour']['hour']} ({hourly_data['summary']['peak_hour']['value']:.2f} passageiros)")
         print(f"Horário de menor movimento: {hourly_data['summary']['lowest_hour']['hour']} ({hourly_data['summary']['lowest_hour']['value']:.2f} passageiros)")
         
-        print("\n🔍 INSIGHTS PRINCIPAIS")
+        print("\nINSIGHTS PRINCIPAIS")
         print("-" * 50)
         consolidated = self.generate_consolidated_report()
         for insight in consolidated['key_insights']:
-            print(f"  • {insight}")
+            print(f"  - {insight}")
         
-        print("\n📈 QUALIDADE DOS DADOS")
+        print("\nQUALIDADE DOS DADOS")
         print("-" * 50)
         print(f"Total de registros processados: {consolidated['data_quality_summary']['total_records_processed']:,}")
         print(f"Completude dos dados: {consolidated['data_quality_summary']['overall_completeness']:.1f}%")
-        print(f"Validação de dados: {'✅ Aprovada' if consolidated['data_quality_summary']['data_validation_passed'] else '❌ Reprovada'}")
+        print(f"Validação de dados: {'Aprovada' if consolidated['data_quality_summary']['data_validation_passed'] else 'Reprovada'}")
         
         print("\n" + "="*80)
 
@@ -388,11 +388,11 @@ def main():
     # Imprimir resumo
     logger.print_summary()
     
-    print(f"\n✅ Logs gerados com sucesso!")
-    print(f"📁 Diretório: {logger.output_dir}")
-    print(f"📄 Arquivos criados:")
+    print(f"\nLogs gerados com sucesso!")
+    print(f"Diretório: {logger.output_dir}")
+    print(f"Arquivos criados:")
     for log_type, filepath in files_created.items():
-        print(f"   • {log_type}: {filepath}")
+        print(f"   - {log_type}: {filepath}")
 
 
 if __name__ == "__main__":
