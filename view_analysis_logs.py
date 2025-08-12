@@ -71,39 +71,39 @@ class AnalysisLogViewer:
         """Exibe a análise mensal de forma formatada."""
         
         print("\n" + "="*80)
-        print("ANÁLISE 1: MÉDIA DE VALOR TOTAL POR MÊS")
+        print("ANALISE 1: MEDIA DE VALOR TOTAL POR MES")
         print("="*80)
         
         print(f"\nPergunta:")
-        print("   Qual a média de valor total (total_amount) recebido em um mês")
-        print("   considerando todos os yellow táxis da frota?")
+        print("   Qual a media de valor total (total_amount) recebido em um mes")
+        print("   considerando todos os yellow taxis da frota?")
         
         print(f"\nDetalhes:")
-        print(f"   - Período: {log_data.get('period', 'N/A')}")
+        print(f"   - Periodo: {log_data.get('period', 'N/A')}")
         print(f"   - Fonte: {log_data.get('data_source', 'N/A')}")
-        print(f"   - Execução: {log_data.get('execution_timestamp', 'N/A')}")
+        print(f"   - Execucao: {log_data.get('execution_timestamp', 'N/A')}")
         
         print(f"\nMetodologia:")
         methodology = log_data.get('methodology', {})
-        print(f"   - Métrica: {methodology.get('metric', 'N/A')}")
-        print(f"   - Nível: {methodology.get('aggregation_level', 'N/A')}")
+        print(f"   - Metrica: {methodology.get('metric', 'N/A')}")
+        print(f"   - Nivel: {methodology.get('aggregation_level', 'N/A')}")
         print(f"   - Agrupamento: {methodology.get('group_by', 'N/A')}")
         
-        print(f"\nResultados por Mês:")
+        print(f"\nResultados por Mes:")
         results = log_data.get('results', [])
         for result in results:
             print(f"   - {result['month_name']:>9}: R$ {result['avg_total_amount']:>7.2f} "
                   f"({result['total_trips']:>9,} viagens)")
         
-        print(f"\nResumo Estatístico:")
+        print(f"\nResumo Estatistico:")
         summary = log_data.get('summary', {})
-        print(f"   - Média Geral: R$ {summary.get('overall_average', 0):.2f}")
+        print(f"   - Media Geral: R$ {summary.get('overall_average', 0):.2f}")
         print(f"   - Total de Viagens: {summary.get('total_trips_analyzed', 0):,}")
         print(f"   - Maior Valor: {summary.get('highest_month', {}).get('month', 'N/A')} "
               f"(R$ {summary.get('highest_month', {}).get('value', 0):.2f})")
         print(f"   - Menor Valor: {summary.get('lowest_month', {}).get('month', 'N/A')} "
               f"(R$ {summary.get('lowest_month', {}).get('value', 0):.2f})")
-        print(f"   - Tendência: {summary.get('trend', 'N/A')}")
+        print(f"   - Tendencia: {summary.get('trend', 'N/A')}")
         
         print(f"\nQualidade dos Dados:")
         quality = log_data.get('data_quality', {})
@@ -116,17 +116,17 @@ class AnalysisLogViewer:
         """Exibe a análise horária de forma formatada."""
         
         print("\n" + "="*80)
-        print("ANÁLISE 2: MÉDIA DE PASSAGEIROS POR HORA (MAIO)")
+        print("ANALISE 2: MEDIA DE PASSAGEIROS POR HORA (MAIO)")
         print("="*80)
         
         print(f"\nPergunta:")
-        print("   Qual a média de passageiros (passenger_count) por cada hora do dia")
-        print("   que pegaram táxi no mês de maio considerando todos os táxis da frota?")
+        print("   Qual a media de passageiros (passenger_count) por cada hora do dia")
+        print("   que pegaram taxi no mes de maio considerando todos os taxis da frota?")
         
         print(f"\nDetalhes:")
-        print(f"   - Período: {log_data.get('period', 'N/A')}")
+        print(f"   - Periodo: {log_data.get('period', 'N/A')}")
         print(f"   - Fonte: {log_data.get('data_source', 'N/A')}")
-        print(f"   - Execução: {log_data.get('execution_timestamp', 'N/A')}")
+        print(f"   - Execucao: {log_data.get('execution_timestamp', 'N/A')}")
         
         print(f"\nResultados por Hora:")
         results = log_data.get('results', [])
@@ -134,7 +134,7 @@ class AnalysisLogViewer:
         # Dividir em períodos para melhor visualização
         periods = [
             ("Madrugada (00h-05h)", results[0:6]),
-            ("Manhã (06h-11h)", results[6:12]),
+            ("Manha (06h-11h)", results[6:12]),
             ("Tarde (12h-17h)", results[12:18]),
             ("Noite (18h-23h)", results[18:24])
         ]
@@ -145,16 +145,16 @@ class AnalysisLogViewer:
                 print(f"      {result['hour_display']:>8}: {result['avg_passenger_count']:.2f} passageiros "
                       f"({result['total_trips']:>6,} viagens)")
         
-        print(f"\nResumo Estatístico:")
+        print(f"\nResumo Estatistico:")
         summary = log_data.get('summary', {})
-        print(f"   - Média Geral: {summary.get('overall_average', 0):.2f} passageiros/viagem")
+        print(f"   - Media Geral: {summary.get('overall_average', 0):.2f} passageiros/viagem")
         print(f"   - Total de Viagens: {summary.get('total_trips_analyzed', 0):,}")
         print(f"   - Pico: {summary.get('peak_hour', {}).get('hour', 'N/A')} "
               f"({summary.get('peak_hour', {}).get('value', 0):.2f} passageiros)")
         print(f"   - Menor: {summary.get('lowest_hour', {}).get('hour', 'N/A')} "
               f"({summary.get('lowest_hour', {}).get('value', 0):.2f} passageiros)")
         
-        print(f"\nPadrões Identificados:")
+        print(f"\nPadroes Identificados:")
         patterns = log_data.get('patterns', {})
         for pattern_name, pattern_data in patterns.items():
             print(f"   - {pattern_name.replace('_', ' ').title()}: "
@@ -165,15 +165,15 @@ class AnalysisLogViewer:
         """Exibe o relatório consolidado."""
         
         print("\n" + "="*80)
-        print("RELATÓRIO CONSOLIDADO - ANÁLISES OBRIGATÓRIAS")
+        print("RELATORIO CONSOLIDADO - ANALISES OBRIGATORIAS")
         print("="*80)
         
         project_info = log_data.get('project_info', {})
-        print(f"\nInformações do Projeto:")
+        print(f"\nInformacoes do Projeto:")
         print(f"   - Nome: {project_info.get('name', 'N/A')}")
-        print(f"   - Repositório: {project_info.get('repository', 'N/A')}")
+        print(f"   - Repositorio: {project_info.get('repository', 'N/A')}")
         print(f"   - Fonte dos Dados: {project_info.get('data_source', 'N/A')}")
-        print(f"   - Período: {project_info.get('period_analyzed', 'N/A')}")
+        print(f"   - Periodo: {project_info.get('period_analyzed', 'N/A')}")
         print(f"   - Tecnologias: {', '.join(project_info.get('technology_stack', []))}")
         
         print(f"\nPrincipais Insights:")
@@ -185,18 +185,18 @@ class AnalysisLogViewer:
         quality = log_data.get('data_quality_summary', {})
         print(f"   - Total de Registros: {quality.get('total_records_processed', 0):,}")
         print(f"   - Completude Geral: {quality.get('overall_completeness', 0):.1f}%")
-        print(f"   - Validação: {'Aprovada' if quality.get('data_validation_passed') else 'Reprovada'}")
+        print(f"   - Validacao: {'Aprovada' if quality.get('data_validation_passed') else 'Reprovada'}")
         
         colunas = quality.get('mandatory_columns_present', [])
-        print(f"   - Colunas Obrigatórias: {', '.join(colunas)}")
+        print(f"   - Colunas Obrigatorias: {', '.join(colunas)}")
         
-        print(f"\nMetadados de Execução:")
+        print(f"\nMetadados de Execucao:")
         metadata = log_data.get('execution_metadata', {})
-        print(f"   - Versão do Pipeline: {metadata.get('pipeline_version', 'N/A')}")
-        print(f"   - Versão do Spark: {metadata.get('spark_version', 'N/A')}")
+        print(f"   - Versao do Pipeline: {metadata.get('pipeline_version', 'N/A')}")
+        print(f"   - Versao do Spark: {metadata.get('spark_version', 'N/A')}")
         print(f"   - Ambiente: {metadata.get('execution_environment', 'N/A')}")
         print(f"   - Tempo de Processamento: {metadata.get('processing_time_seconds', 0):,} segundos")
-        print(f"   - Uso de Memória: {metadata.get('memory_usage_gb', 0):.1f} GB")
+        print(f"   - Uso de Memoria: {metadata.get('memory_usage_gb', 0):.1f} GB")
     
     def display_all_logs(self) -> None:
         """Exibe todos os logs encontrados."""
@@ -207,10 +207,10 @@ class AnalysisLogViewer:
         latest_logs = self.find_latest_logs()
         
         if not latest_logs:
-            print("Nenhum log encontrado no diretório:", self.logs_dir)
+            print("Nenhum log encontrado no diretorio:", self.logs_dir)
             return
         
-        print(f"Diretório: {self.logs_dir}")
+        print(f"Diretorio: {self.logs_dir}")
         print(f"Logs encontrados: {len(latest_logs)}")
         
         # Exibir análise mensal
@@ -232,7 +232,7 @@ class AnalysisLogViewer:
                 self.display_consolidated_report(consolidated_data)
         
         print("\n" + "="*80)
-        print("VISUALIZAÇÃO COMPLETA DOS LOGS")
+        print("VISUALIZACAO COMPLETA DOS LOGS")
         print("="*80)
         print(f"Arquivos processados:")
         for log_type, filepath in latest_logs.items():

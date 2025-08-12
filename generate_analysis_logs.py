@@ -337,25 +337,25 @@ class NYCTaxiAnalysisLogger:
         hourly_data = self.generate_hourly_analysis_log()
         
         print("\n" + "="*80)
-        print("RESUMO DAS ANÁLISES OBRIGATÓRIAS - NYC TAXI DATA")
+        print("RESUMO DAS ANALISES OBRIGATORIAS - NYC TAXI DATA")
         print("="*80)
         
-        print("\nANÁLISE 1: MÉDIA DE VALOR TOTAL POR MÊS")
+        print("\nANALISE 1: MEDIA DE VALOR TOTAL POR MES")
         print("-" * 50)
         print(f"Pergunta: {monthly_data['description']}")
-        print(f"Período: {monthly_data['period']}")
-        print(f"Resposta: Média geral de R$ {monthly_data['summary']['overall_average']:.2f}")
-        print("\nDetalhamento por mês:")
+        print(f"Periodo: {monthly_data['period']}")
+        print(f"Resposta: Media geral de R$ {monthly_data['summary']['overall_average']:.2f}")
+        print("\nDetalhamento por mes:")
         for result in monthly_data['results']:
             print(f"  - {result['month_name']}: R$ {result['avg_total_amount']:.2f} ({result['total_trips']:,} viagens)")
         
-        print("\nANÁLISE 2: MÉDIA DE PASSAGEIROS POR HORA (MAIO)")
+        print("\nANALISE 2: MEDIA DE PASSAGEIROS POR HORA (MAIO)")
         print("-" * 50)
         print(f"Pergunta: {hourly_data['description']}")
-        print(f"Período: {hourly_data['period']}")
-        print(f"Resposta: Média geral de {hourly_data['summary']['overall_average']:.2f} passageiros por viagem")
-        print(f"Horário de pico: {hourly_data['summary']['peak_hour']['hour']} ({hourly_data['summary']['peak_hour']['value']:.2f} passageiros)")
-        print(f"Horário de menor movimento: {hourly_data['summary']['lowest_hour']['hour']} ({hourly_data['summary']['lowest_hour']['value']:.2f} passageiros)")
+        print(f"Periodo: {hourly_data['period']}")
+        print(f"Resposta: Media geral de {hourly_data['summary']['overall_average']:.2f} passageiros por viagem")
+        print(f"Horario de pico: {hourly_data['summary']['peak_hour']['hour']} ({hourly_data['summary']['peak_hour']['value']:.2f} passageiros)")
+        print(f"Horario de menor movimento: {hourly_data['summary']['lowest_hour']['hour']} ({hourly_data['summary']['lowest_hour']['value']:.2f} passageiros)")
         
         print("\nINSIGHTS PRINCIPAIS")
         print("-" * 50)
@@ -367,7 +367,7 @@ class NYCTaxiAnalysisLogger:
         print("-" * 50)
         print(f"Total de registros processados: {consolidated['data_quality_summary']['total_records_processed']:,}")
         print(f"Completude dos dados: {consolidated['data_quality_summary']['overall_completeness']:.1f}%")
-        print(f"Validação de dados: {'Aprovada' if consolidated['data_quality_summary']['data_validation_passed'] else 'Reprovada'}")
+        print(f"Validacao de dados: {'Aprovada' if consolidated['data_quality_summary']['data_validation_passed'] else 'Reprovada'}")
         
         print("\n" + "="*80)
 
@@ -389,7 +389,7 @@ def main():
     logger.print_summary()
     
     print(f"\nLogs gerados com sucesso!")
-    print(f"Diretório: {logger.output_dir}")
+    print(f"Diretorio: {logger.output_dir}")
     print(f"Arquivos criados:")
     for log_type, filepath in files_created.items():
         print(f"   - {log_type}: {filepath}")
