@@ -11,10 +11,10 @@ from datetime import datetime
 
 def generate_final_report():
     """Gera relatório final consolidado."""
-    
+
     print("RELATÓRIO FINAL DE TESTES - NYC TAXI PIPELINE")
     print("=" * 60)
-    
+
     # Dados do projeto
     project_info = {
         "name": "NYC Taxi Data Engineering Pipeline",
@@ -27,7 +27,7 @@ def generate_final_report():
             "Média de passenger_count por hora (Maio)"
         ]
     }
-    
+
     # Status dos componentes
     components_status = {
         "bronze_layer": {
@@ -43,7 +43,7 @@ def generate_final_report():
             "key_methods": ["ingest_data", "validate_bronze_data"]
         },
         "silver_layer": {
-            "file": "src/silver_layer.py", 
+            "file": "src/silver_layer.py",
             "status": "implemented",
             "features": [
                 "Validação de schema",
@@ -56,7 +56,7 @@ def generate_final_report():
         },
         "gold_layer": {
             "file": "src/gold_layer.py",
-            "status": "implemented", 
+            "status": "implemented",
             "features": [
                 "Agregações mensais",
                 "Agregações horárias",
@@ -71,7 +71,7 @@ def generate_final_report():
             "status": "implemented",
             "features": [
                 "Orquestração completa",
-                "Configuração flexível", 
+                "Configuração flexível",
                 "Logging detalhado",
                 "Validação de camadas"
             ],
@@ -83,7 +83,7 @@ def generate_final_report():
             "status": "implemented",
             "features": [
                 "Análise mensal obrigatória",
-                "Análise horária obrigatória", 
+                "Análise horária obrigatória",
                 "Visualizações",
                 "Insights de negócio"
             ],
@@ -91,7 +91,7 @@ def generate_final_report():
             "key_methods": ["get_monthly_average_total_amount", "get_hourly_average_passenger_count_may"]
         }
     }
-    
+
     # Status das análises obrigatórias
     required_analyses_status = {
         "analysis_1": {
@@ -103,13 +103,13 @@ def generate_final_report():
         },
         "analysis_2": {
             "description": "Média de passenger_count por hora do dia no mês de maio",
-            "status": "implemented", 
+            "status": "implemented",
             "implementation": "gold_hourly_aggregations_may table + get_hourly_average_passenger_count_may method",
             "sql_query": "SELECT pickup_hour, avg_passenger_count FROM gold_hourly_aggregations_may ORDER BY pickup_hour",
             "output_format": "Hourly averages for all 24 hours in May 2023"
         }
     }
-    
+
     # Status dos testes
     test_results = {
         "structure_test": {
@@ -119,7 +119,7 @@ def generate_final_report():
         },
         "syntax_test": {
             "name": "Sintaxe Python",
-            "status": "passed", 
+            "status": "passed",
             "details": "Todos os arquivos Python têm sintaxe válida"
         },
         "patterns_test": {
@@ -133,7 +133,7 @@ def generate_final_report():
             "details": "Python 3.13 tem problemas com PySpark. Recomenda-se Python 3.8-3.10 para execução local"
         }
     }
-    
+
     # Métricas do projeto
     project_metrics = {
         "files": {
@@ -155,7 +155,7 @@ def generate_final_report():
             "required_analyses": "2/2 (100%)"
         }
     }
-    
+
     # Próximos passos
     next_steps = {
         "databricks_execution": {
@@ -163,7 +163,7 @@ def generate_final_report():
             "description": "Upload dos arquivos para Databricks Community Edition",
             "files_to_upload": [
                 "src/ (toda a pasta)",
-                "analysis/NYC_Taxi_Analysis.ipynb", 
+                "analysis/NYC_Taxi_Analysis.ipynb",
                 "databricks_etl_runner.py",
                 "config.yaml"
             ],
@@ -184,7 +184,7 @@ def generate_final_report():
             ]
         }
     }
-    
+
     # Compilar relatório final
     final_report = {
         "report_info": {
@@ -206,36 +206,36 @@ def generate_final_report():
             "recommendation": "Proceed with Databricks deployment"
         }
     }
-    
+
     # Salvar relatório
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     report_filename = f"final_report_{timestamp}.json"
-    
+
     with open(report_filename, 'w', encoding='utf-8') as f:
         json.dump(final_report, f, indent=2, ensure_ascii=False)
-    
+
     # Exibir resumo
     print(f"Relatório final salvo em: {report_filename}")
     print(f"\nSTATUS FINAL: {final_report['conclusion']['overall_status']}")
     print(f"PRONTIDÃO: {final_report['conclusion']['readiness']}")
     print(f"CONFORMIDADE: {final_report['conclusion']['compliance']}")
     print(f"RECOMENDAÇÃO: {final_report['conclusion']['recommendation']}")
-    
+
     print(f"\nMÉTRICAS FINAIS:")
     print(f"  Total de arquivos: {project_metrics['files']['total_files']}")
     print(f"  Linhas de código: {project_metrics['code']['total_lines']:,}")
     print(f"  Classes: {project_metrics['code']['classes']}")
     print(f"  Funções: {project_metrics['code']['functions']}")
     print(f"  Cobertura: {project_metrics['coverage']['required_files']} arquivos, {project_metrics['coverage']['required_patterns']} padrões")
-    
+
     print(f"\nCOMPONENTES IMPLEMENTADOS:")
     for component, details in components_status.items():
         print(f"  {component}: {details['main_class']} ({details['status']})")
-    
+
     print(f"\nANÁLISES OBRIGATÓRIAS:")
     for analysis, details in required_analyses_status.items():
         print(f"  {analysis}: {details['description']} ({details['status']})")
-    
+
     return report_filename
 
 if __name__ == "__main__":

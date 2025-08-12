@@ -45,24 +45,24 @@ print(f"Configuration: {DATABRICKS_CONFIG}")
 # Create Bronze layer job
 def run_bronze_layer_databricks():
     """Execute Bronze layer in Databricks environment."""
-    
+
     print("Starting Bronze Layer Processing...")
-    
+
     try:
         # Import bronze layer functionality
         from bronze_layer import BronzeLayer
-        
+
         bronze_processor = BronzeLayer(
             spark=spark,
             bronze_path=DATABRICKS_CONFIG["data_paths"]["bronze"]
         )
-        
+
         # Execute ingestion
         success = bronze_processor.ingest_data(
             year=DATABRICKS_CONFIG["data_params"]["year"],
             months=DATABRICKS_CONFIG["data_params"]["months"]
         )
-        
+
         if success:
             # Validate results
             validation = bronze_processor.validate_bronze_data()
@@ -73,7 +73,7 @@ def run_bronze_layer_databricks():
         else:
             print("Bronze Layer Failed")
             return False
-            
+
     except Exception as e:
         print(f"Bronze Layer Error: {str(e)}")
         return False
@@ -91,36 +91,36 @@ bronze_success = run_bronze_layer_databricks()
 
 def run_silver_layer_databricks():
     """Execute Silver layer in Databricks environment."""
-    
+
     print("Starting Silver Layer Processing...")
-    
+
     if not bronze_success:
         print("Skipping Silver Layer - Bronze Layer failed")
         return False
-    
+
     try:
         from silver_layer import SilverLayer
-        
+
         silver_processor = SilverLayer(
             spark=spark,
             silver_path=DATABRICKS_CONFIG["data_paths"]["silver"]
         )
-        
+
         # Execute cleaning and transformation
         success = silver_processor.process_to_silver()
-        
+
         if success:
             # Get quality metrics
             silver_df = spark.table("silver_taxi_trips_clean")
             record_count = silver_df.count()
-            
+
             print(f"Silver Layer Completed Successfully")
             print(f"   Clean records: {record_count:,}")
             return True
         else:
             print("Silver Layer Failed")
             return False
-            
+
     except Exception as e:
         print(f"Silver Layer Error: {str(e)}")
         return False
@@ -138,41 +138,41 @@ silver_success = run_silver_layer_databricks()
 
 def run_gold_layer_databricks():
     """Execute Gold layer in Databricks environment."""
-    
+
     print("Starting Gold Layer Processing...")
-    
+
     if not silver_success:
         print("Skipping Gold Layer - Silver Layer failed")
         return False
-    
+
     try:
         from gold_layer import GoldLayer
-        
+
         gold_processor = GoldLayer(
             spark=spark,
             gold_path=DATABRICKS_CONFIG["data_paths"]["gold"]
         )
-        
+
         # Execute aggregations
         success = gold_processor.process_to_gold()
-        
+
         if success:
             print(f"Gold Layer Completed Successfully")
-            
+
             # Show available tables
             tables = spark.sql("SHOW TABLES").collect()
             gold_tables = [t.tableName for t in tables if t.tableName.startswith('gold_')]
-            
+
             print(f"   Created tables:")
             for table in gold_tables:
                 count = spark.table(table).count()
                 print(f"     - {table}: {count:,} records")
-            
+
             return True
         else:
             print("Gold Layer Failed")
             return False
-            
+
     except Exception as e:
         print(f"Gold Layer Error: {str(e)}")
         return False
@@ -188,64 +188,64 @@ gold_success = run_gold_layer_databricks()
 
 def run_required_analyses():
     """Execute the required analyses."""
-    
+
     print("Running Required Analyses...")
-    
+
     if not gold_success:
         print("Skipping Analyses - Gold Layer failed")
         return False
-    
+
     try:
         # Analysis 1: Monthly average total_amount
         print("\n1. Monthly Average Total Amount:")
         monthly_query = """
-        SELECT 
+        SELECT
             pickup_month,
             CASE pickup_month
                 WHEN 1 THEN 'January'
-                WHEN 2 THEN 'February' 
+                WHEN 2 THEN 'February'
                 WHEN 3 THEN 'March'
                 WHEN 4 THEN 'April'
                 WHEN 5 THEN 'May'
             END as month_name,
             ROUND(avg_total_amount, 2) as avg_total_amount,
             total_trips
-        FROM gold_monthly_aggregations 
+        FROM gold_monthly_aggregations
         ORDER BY pickup_month
         """
-        
+
         monthly_df = spark.sql(monthly_query)
         monthly_results = monthly_df.collect()
-        
+
         for row in monthly_results:
             print(f"   {row.month_name}: ${row.avg_total_amount:.2f} (from {row.total_trips:,} trips)")
-        
+
         # Analysis 2: Hourly average passenger_count in May
         print("\n2. Hourly Average Passenger Count (May):")
         hourly_query = """
-        SELECT 
+        SELECT
             pickup_hour,
             ROUND(avg_passenger_count, 2) as avg_passenger_count,
             total_trips
-        FROM gold_hourly_aggregations_may 
+        FROM gold_hourly_aggregations_may
         ORDER BY pickup_hour
         """
-        
+
         hourly_df = spark.sql(hourly_query)
         hourly_results = hourly_df.collect()
-        
+
         # Show key hours (every 3 hours for brevity)
         for i in range(0, len(hourly_results), 3):
             row = hourly_results[i]
             hour_display = f"{row.pickup_hour:02d}:00"
             print(f"   {hour_display}: {row.avg_passenger_count:.2f} passengers (from {row.total_trips:,} trips)")
-        
+
         print(f"\nRequired Analyses Completed Successfully")
         print(f"   Monthly data points: {len(monthly_results)}")
         print(f"   Hourly data points: {len(hourly_results)}")
-        
+
         return True
-        
+
     except Exception as e:
         print(f"Analysis Error: {str(e)}")
         return False
@@ -261,28 +261,28 @@ analysis_success = run_required_analyses()
 
 def print_pipeline_summary():
     """Print a summary of the pipeline execution."""
-    
+
     print("\n" + "=" * 60)
     print("NYC TAXI ETL PIPELINE - EXECUTION SUMMARY")
     print("=" * 60)
-    
+
     # Status indicators
     bronze_status = "SUCCESS" if bronze_success else "FAILED"
     silver_status = "SUCCESS" if silver_success else "FAILED"
     gold_status = "SUCCESS" if gold_success else "FAILED"
     analysis_status = "SUCCESS" if analysis_success else "FAILED"
-    
+
     print(f"Bronze Layer (Ingestion):     {bronze_status}")
     print(f"Silver Layer (Cleaning):      {silver_status}")
     print(f"Gold Layer (Aggregation):     {gold_status}")
     print(f"Required Analyses:            {analysis_status}")
-    
+
     # Overall status
     overall_success = all([bronze_success, silver_success, gold_success, analysis_success])
     overall_status = "COMPLETE" if overall_success else "INCOMPLETE"
-    
+
     print(f"\nOverall Pipeline Status:      {overall_status}")
-    
+
     if overall_success:
         print("\nAll requirements have been successfully fulfilled!")
         print("The required analyses are now available in the Gold layer tables.")
@@ -290,9 +290,9 @@ def print_pipeline_summary():
     else:
         print("\nSome steps failed. Please check the error messages above.")
         print("Review the logs and retry the failed steps.")
-    
+
     print("=" * 60)
-    
+
     return overall_success
 
 # Print final summary

@@ -25,35 +25,35 @@ test/
 ## Tipos de Teste
 
 ### 1. Testes Básicos (`test_simple.py`)
-- ✅ Verificação de estrutura do projeto
-- ✅ Validação de imports (sem PySpark)
-- ✅ Verificação de funções principais
-- ✅ Validação de colunas obrigatórias
-- ✅ Verificação de análises obrigatórias
+-  Verificação de estrutura do projeto
+-  Validação de imports (sem PySpark)
+-  Verificação de funções principais
+-  Validação de colunas obrigatórias
+-  Verificação de análises obrigatórias
 
 **Execução**: `python test/test_simple.py`
 
 ### 2. Testes de Sintaxe (`test_syntax.py`)
-- ✅ Validação de sintaxe Python
-- ✅ Análise AST de estrutura
-- ✅ Verificação de padrões obrigatórios
-- ✅ Métricas de código
+-  Validação de sintaxe Python
+-  Análise AST de estrutura
+-  Verificação de padrões obrigatórios
+-  Métricas de código
 
 **Execução**: `python test/test_syntax.py`
 
 ### 3. Testes de Compatibilidade (`test_compatibility.py`)
-- ⚠️ Teste de compatibilidade Python/PySpark
-- ✅ Validação com mocks
-- ✅ Verificação de estrutura sem execução
-- ⚠️ Identificação de problemas de versão
+-  Teste de compatibilidade Python/PySpark
+-  Validação com mocks
+-  Verificação de estrutura sem execução
+-  Identificação de problemas de versão
 
 **Execução**: `python test/test_compatibility.py`
 
 ### 4. Testes Completos (`test_pipeline.py`)
-- 🔧 Testes unitários com PySpark
-- 🔧 Validação de componentes
-- 🔧 Testes de integração
-- ⚠️ Requer Python 3.8-3.10 + PySpark
+-  Testes unitários com PySpark
+-  Validação de componentes
+-  Testes de integração
+-  Requer Python 3.8-3.10 + PySpark
 
 **Execução**: `python test/test_pipeline.py` (requer ambiente compatível)
 
@@ -112,15 +112,15 @@ Gera relatório executivo consolidado:
 
 ## Resultados dos Testes
 
-### ✅ Status Geral: APROVADO
+###  Status Geral: APROVADO
 
-- **Estrutura**: 13/13 arquivos obrigatórios ✅
-- **Sintaxe**: Todos os arquivos Python válidos ✅
-- **Padrões**: 21/21 padrões obrigatórios ✅
-- **Análises**: 2/2 análises obrigatórias ✅
-- **Compatibilidade**: ⚠️ Python 3.13 + PySpark (usar Databricks)
+- **Estrutura**: 13/13 arquivos obrigatórios 
+- **Sintaxe**: Todos os arquivos Python válidos 
+- **Padrões**: 21/21 padrões obrigatórios 
+- **Análises**: 2/2 análises obrigatórias 
+- **Compatibilidade**:  Python 3.13 + PySpark (usar Databricks)
 
-### 📊 Métricas do Projeto
+###  Métricas do Projeto
 
 - **Total de arquivos**: 17
 - **Linhas de código**: 1,924
@@ -128,13 +128,13 @@ Gera relatório executivo consolidado:
 - **Funções/Métodos**: 44
 - **Cobertura**: 100% dos requisitos
 
-### 🎯 Componentes Implementados
+###  Componentes Implementados
 
-- ✅ **Bronze Layer**: Ingestão de dados NYC TLC
-- ✅ **Silver Layer**: Limpeza e validação
-- ✅ **Gold Layer**: Agregações analíticas
-- ✅ **ETL Pipeline**: Orquestração completa
-- ✅ **Analysis**: Análises obrigatórias
+-  **Bronze Layer**: Ingestão de dados NYC TLC
+-  **Silver Layer**: Limpeza e validação
+-  **Gold Layer**: Agregações analíticas
+-  **ETL Pipeline**: Orquestração completa
+-  **Analysis**: Análises obrigatórias
 
 ## Execução Rápida
 
@@ -169,4 +169,4 @@ python test/final_test_report.py
 
 ---
 
-**Status Final**: ✅ **PROJETO APROVADO E PRONTO PARA EXECUÇÃO**
+**Status Final**:  **PROJETO APROVADO E PRONTO PARA EXECUÇÃO**

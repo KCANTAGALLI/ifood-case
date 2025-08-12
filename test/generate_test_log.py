@@ -37,10 +37,10 @@ def analyze_python_file(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-        
+
         # Parse AST
         tree = ast.parse(content)
-        
+
         analysis = {
             "syntax_valid": True,
             "lines_of_code": len([line for line in content.split('\n') if line.strip() and not line.strip().startswith('#')]),
@@ -58,11 +58,11 @@ def analyze_python_file(file_path):
                 "import_count": 0
             }
         }
-        
+
         # Análise detalhada dos nós
         for node in ast.walk(tree):
             analysis["complexity_metrics"]["total_nodes"] += 1
-            
+
             if isinstance(node, ast.ClassDef):
                 class_info = {
                     "name": node.name,
@@ -70,7 +70,7 @@ def analyze_python_file(file_path):
                     "methods": [],
                     "docstring": ast.get_docstring(node)
                 }
-                
+
                 # Métodos da classe
                 for item in node.body:
                     if isinstance(item, ast.FunctionDef):
@@ -80,10 +80,10 @@ def analyze_python_file(file_path):
                             "args_count": len(item.args.args),
                             "docstring": ast.get_docstring(item)
                         })
-                
+
                 analysis["classes"].append(class_info)
                 analysis["complexity_metrics"]["class_count"] += 1
-                
+
             elif isinstance(node, ast.FunctionDef):
                 func_info = {
                     "name": node.name,
@@ -94,7 +94,7 @@ def analyze_python_file(file_path):
                 }
                 analysis["functions"].append(func_info)
                 analysis["complexity_metrics"]["function_count"] += 1
-                
+
             elif isinstance(node, ast.Import):
                 for alias in node.names:
                     analysis["imports"].append({
@@ -104,7 +104,7 @@ def analyze_python_file(file_path):
                         "line_number": node.lineno
                     })
                 analysis["complexity_metrics"]["import_count"] += 1
-                
+
             elif isinstance(node, ast.ImportFrom):
                 module = node.module or ''
                 for alias in node.names:
@@ -115,7 +115,7 @@ def analyze_python_file(file_path):
                         "line_number": node.lineno
                     })
                 analysis["complexity_metrics"]["import_count"] += 1
-                
+
             elif isinstance(node, ast.Assign):
                 for target in node.targets:
                     if isinstance(target, ast.Name) and target.id.isupper():
@@ -123,9 +123,9 @@ def analyze_python_file(file_path):
                             "name": target.id,
                             "line_number": node.lineno
                         })
-        
+
         return True, analysis
-        
+
     except SyntaxError as e:
         return False, {
             "syntax_valid": False,
@@ -146,7 +146,7 @@ def test_project_structure():
     required_files = [
         'src/__init__.py',
         'src/bronze_layer.py',
-        'src/silver_layer.py', 
+        'src/silver_layer.py',
         'src/gold_layer.py',
         'src/etl_pipeline.py',
         'analysis/__init__.py',
@@ -158,7 +158,7 @@ def test_project_structure():
         'databricks_etl_runner.py',
         'EXECUTION_GUIDE.md'
     ]
-    
+
     structure_test = {
         "test_name": "project_structure",
         "description": "Verifica se todos os arquivos obrigatórios estão presentes",
@@ -172,7 +172,7 @@ def test_project_structure():
             "file_details": {}
         }
     }
-    
+
     # Verificar arquivos obrigatórios
     for file_path in required_files:
         if os.path.exists(file_path):
@@ -187,7 +187,7 @@ def test_project_structure():
             structure_test["details"]["file_details"][file_path] = {
                 "exists": False
             }
-    
+
     # Verificar arquivos extras
     all_files = []
     for root, dirs, files in os.walk('.'):
@@ -195,16 +195,16 @@ def test_project_structure():
             if not file.startswith('.') and not file.endswith('.pyc'):
                 file_path = os.path.join(root, file).replace('.\\', '').replace('\\', '/')
                 all_files.append(file_path)
-    
+
     for file_path in all_files:
         if file_path not in required_files:
             structure_test["details"]["extra_files"].append(file_path)
-    
+
     # Status final
     if structure_test["details"]["missing_files"]:
         structure_test["status"] = "failed"
         structure_test["error"] = f"Missing files: {structure_test['details']['missing_files']}"
-    
+
     return structure_test
 
 def test_python_files():
@@ -212,11 +212,11 @@ def test_python_files():
     python_files = [
         'src/bronze_layer.py',
         'src/silver_layer.py',
-        'src/gold_layer.py', 
+        'src/gold_layer.py',
         'src/etl_pipeline.py',
         'analysis/nyc_taxi_analysis.py'
     ]
-    
+
     python_test = {
         "test_name": "python_files_analysis",
         "description": "Análise detalhada de todos os arquivos Python",
@@ -232,18 +232,18 @@ def test_python_files():
             "files": {}
         }
     }
-    
+
     for file_path in python_files:
         if os.path.exists(file_path):
             success, analysis = analyze_python_file(file_path)
-            
+
             file_result = {
                 "file_path": file_path,
                 "analysis_success": success,
                 "hash": get_file_hash(file_path),
                 "stats": get_file_stats(file_path)
             }
-            
+
             if success:
                 file_result.update(analysis)
                 python_test["details"]["passed_files"] += 1
@@ -255,7 +255,7 @@ def test_python_files():
                 python_test["details"]["failed_files"] += 1
                 if python_test["status"] == "passed":
                     python_test["status"] = "failed"
-            
+
             python_test["details"]["files"][file_path] = file_result
         else:
             python_test["details"]["files"][file_path] = {
@@ -265,7 +265,7 @@ def test_python_files():
             }
             python_test["details"]["failed_files"] += 1
             python_test["status"] = "failed"
-    
+
     return python_test
 
 def test_required_patterns():
@@ -281,7 +281,7 @@ def test_required_patterns():
             ]
         },
         {
-            "file": "src/silver_layer.py", 
+            "file": "src/silver_layer.py",
             "patterns": [
                 {"pattern": "class SilverLayer", "description": "Classe principal Silver Layer"},
                 {"pattern": "def clean_data", "description": "Método de limpeza"},
@@ -313,7 +313,7 @@ def test_required_patterns():
             ]
         }
     ]
-    
+
     patterns_test = {
         "test_name": "required_patterns",
         "description": "Verifica se todos os padrões obrigatórios estão implementados",
@@ -327,7 +327,7 @@ def test_required_patterns():
             "files": {}
         }
     }
-    
+
     for file_config in patterns_config:
         file_path = file_config["file"]
         file_result = {
@@ -337,15 +337,15 @@ def test_required_patterns():
             "missing_patterns": 0,
             "patterns": {}
         }
-        
+
         if os.path.exists(file_path):
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
-            
+
             for pattern_config in file_config["patterns"]:
                 pattern = pattern_config["pattern"]
                 description = pattern_config["description"]
-                
+
                 if pattern in content:
                     file_result["found_patterns"] += 1
                     patterns_test["details"]["found_patterns"] += 1
@@ -366,9 +366,9 @@ def test_required_patterns():
             file_result["missing_patterns"] = file_result["total_patterns"]
             patterns_test["details"]["missing_patterns"] += file_result["total_patterns"]
             patterns_test["status"] = "failed"
-        
+
         patterns_test["details"]["files"][file_path] = file_result
-    
+
     return patterns_test
 
 def generate_system_info():
@@ -387,14 +387,14 @@ def generate_system_info():
 
 def generate_complete_test_log():
     """Gera log completo dos testes em JSON."""
-    
+
     print("Gerando log detalhado dos testes...")
-    
+
     # Executar todos os testes
     structure_test = test_project_structure()
     python_test = test_python_files()
     patterns_test = test_required_patterns()
-    
+
     # Compilar log completo
     complete_log = {
         "test_session": {
@@ -438,36 +438,36 @@ def generate_complete_test_log():
             }
         }
     }
-    
+
     # Calcular status geral
     passed_tests = sum(1 for test in complete_log["test_results"]["individual_tests"] if test["status"] == "passed")
     failed_tests = sum(1 for test in complete_log["test_results"]["individual_tests"] if test["status"] == "failed")
-    
+
     complete_log["test_results"]["summary"]["passed_tests"] = passed_tests
     complete_log["test_results"]["summary"]["failed_tests"] = failed_tests
     complete_log["test_results"]["summary"]["overall_status"] = "passed" if failed_tests == 0 else "failed"
-    
+
     # Finalizar log
     complete_log["test_session"]["end_time"] = datetime.now().isoformat()
     complete_log["test_session"]["duration_seconds"] = 1  # Placeholder
-    
+
     return complete_log
 
 def main():
     """Função principal."""
     print("GERADOR DE LOG JSON DOS TESTES")
     print("=" * 50)
-    
+
     # Gerar log completo
     log_data = generate_complete_test_log()
-    
+
     # Salvar em arquivo JSON
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_filename = f"test_log_{timestamp}.json"
-    
+
     with open(log_filename, 'w', encoding='utf-8') as f:
         json.dump(log_data, f, indent=2, ensure_ascii=False, default=str)
-    
+
     # Salvar versão resumida também
     summary_filename = f"test_summary_{timestamp}.json"
     summary_data = {
@@ -477,14 +477,14 @@ def main():
         "summary": log_data["test_results"]["summary"],
         "metrics": log_data["metrics"]
     }
-    
+
     with open(summary_filename, 'w', encoding='utf-8') as f:
         json.dump(summary_data, f, indent=2, ensure_ascii=False)
-    
+
     # Exibir resultados
     print(f"Log completo salvo em: {log_filename}")
     print(f"Resumo salvo em: {summary_filename}")
-    
+
     print(f"\nRESUMO DOS TESTES:")
     print(f"Status Geral: {log_data['test_results']['summary']['overall_status'].upper()}")
     print(f"Testes Aprovados: {log_data['test_results']['summary']['passed_tests']}")
@@ -493,7 +493,7 @@ def main():
     print(f"Total de Linhas de Código: {log_data['metrics']['project_files']['total_lines_of_code']}")
     print(f"Cobertura de Arquivos: {log_data['metrics']['coverage']['required_files_found']}/{log_data['metrics']['coverage']['required_files_total']}")
     print(f"Cobertura de Padrões: {log_data['metrics']['coverage']['required_patterns_found']}/{log_data['metrics']['coverage']['required_patterns_total']}")
-    
+
     return log_data["test_results"]["summary"]["overall_status"] == "passed"
 
 if __name__ == "__main__":

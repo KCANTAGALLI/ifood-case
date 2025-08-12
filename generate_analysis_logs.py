@@ -15,27 +15,26 @@ import os
 from datetime import datetime
 from typing import Dict, List, Any
 
-
 class NYCTaxiAnalysisLogger:
     """Gerador de logs para as análises obrigatórias do NYC Taxi."""
-    
+
     def __init__(self, output_dir: str = "analysis_logs"):
         """
         Inicializa o gerador de logs.
-        
+
         Args:
             output_dir: Diretório para salvar os logs
         """
         self.output_dir = output_dir
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
+
         # Criar diretório se não existir
         os.makedirs(output_dir, exist_ok=True)
-        
+
     def generate_monthly_analysis_log(self) -> Dict[str, Any]:
         """
         Gera log da análise 1: Média de total_amount por mês.
-        
+
         Returns:
             Dict com os resultados da análise mensal
         """
@@ -117,11 +116,11 @@ class NYCTaxiAnalysisLogger:
                 "outliers_removed": 45123
             },
             "sql_query": """
-            SELECT 
+            SELECT
                 MONTH(tpep_pickup_datetime) as pickup_month,
                 CASE MONTH(tpep_pickup_datetime)
                     WHEN 1 THEN 'Janeiro'
-                    WHEN 2 THEN 'Fevereiro' 
+                    WHEN 2 THEN 'Fevereiro'
                     WHEN 3 THEN 'Março'
                     WHEN 4 THEN 'Abril'
                     WHEN 5 THEN 'Maio'
@@ -131,9 +130,9 @@ class NYCTaxiAnalysisLogger:
                 MIN(total_amount) as min_amount,
                 MAX(total_amount) as max_amount,
                 ROUND(STDDEV(total_amount), 2) as std_deviation
-            FROM silver_nyc_taxi_data 
-            WHERE VendorID IS NOT NULL 
-                AND total_amount > 0 
+            FROM silver_nyc_taxi_data
+            WHERE VendorID IS NOT NULL
+                AND total_amount > 0
                 AND total_amount < 1000
                 AND tpep_pickup_datetime >= '2023-01-01'
                 AND tpep_pickup_datetime <= '2023-05-31'
@@ -141,13 +140,13 @@ class NYCTaxiAnalysisLogger:
             ORDER BY pickup_month
             """
         }
-        
+
         return monthly_results
-    
+
     def generate_hourly_analysis_log(self) -> Dict[str, Any]:
         """
         Gera log da análise 2: Média de passenger_count por hora em Maio.
-        
+
         Returns:
             Dict com os resultados da análise horária
         """
@@ -215,9 +214,9 @@ class NYCTaxiAnalysisLogger:
                 "outliers_removed": 12456
             },
             "sql_query": """
-            SELECT 
+            SELECT
                 HOUR(tpep_pickup_datetime) as pickup_hour,
-                CASE 
+                CASE
                     WHEN HOUR(tpep_pickup_datetime) = 0 THEN '12:00 AM'
                     WHEN HOUR(tpep_pickup_datetime) < 12 THEN CONCAT(HOUR(tpep_pickup_datetime), ':00 AM')
                     WHEN HOUR(tpep_pickup_datetime) = 12 THEN '12:00 PM'
@@ -225,9 +224,9 @@ class NYCTaxiAnalysisLogger:
                 END as hour_display,
                 ROUND(AVG(passenger_count), 2) as avg_passenger_count,
                 COUNT(*) as total_trips
-            FROM silver_nyc_taxi_data 
-            WHERE VendorID IS NOT NULL 
-                AND passenger_count > 0 
+            FROM silver_nyc_taxi_data
+            WHERE VendorID IS NOT NULL
+                AND passenger_count > 0
                 AND passenger_count <= 6
                 AND tpep_pickup_datetime >= '2023-05-01'
                 AND tpep_pickup_datetime <= '2023-05-31'
@@ -235,19 +234,19 @@ class NYCTaxiAnalysisLogger:
             ORDER BY pickup_hour
             """
         }
-        
+
         return hourly_results
-    
+
     def generate_consolidated_report(self) -> Dict[str, Any]:
         """
         Gera relatório consolidado das duas análises.
-        
+
         Returns:
             Dict com relatório consolidado
         """
         monthly_data = self.generate_monthly_analysis_log()
         hourly_data = self.generate_hourly_analysis_log()
-        
+
         consolidated = {
             "report_id": f"nyc_taxi_analysis_consolidated_{self.timestamp}",
             "title": "Análise Consolidada - NYC Yellow Taxi Data",
@@ -295,51 +294,51 @@ class NYCTaxiAnalysisLogger:
                 "memory_usage_gb": 8.5
             }
         }
-        
+
         return consolidated
-    
+
     def save_logs(self) -> None:
         """Salva todos os logs em arquivos JSON."""
-        
+
         print("Gerando logs das análises obrigatórias...")
-        
+
         # Análise 1: Média mensal
         monthly_log = self.generate_monthly_analysis_log()
         monthly_file = os.path.join(self.output_dir, f"monthly_analysis_log_{self.timestamp}.json")
         with open(monthly_file, 'w', encoding='utf-8') as f:
             json.dump(monthly_log, f, indent=2, ensure_ascii=False)
         print(f"Log da análise mensal salvo: {monthly_file}")
-        
+
         # Análise 2: Média horária
         hourly_log = self.generate_hourly_analysis_log()
         hourly_file = os.path.join(self.output_dir, f"hourly_analysis_log_{self.timestamp}.json")
         with open(hourly_file, 'w', encoding='utf-8') as f:
             json.dump(hourly_log, f, indent=2, ensure_ascii=False)
         print(f"Log da análise horária salvo: {hourly_file}")
-        
+
         # Relatório consolidado
         consolidated_log = self.generate_consolidated_report()
         consolidated_file = os.path.join(self.output_dir, f"consolidated_analysis_report_{self.timestamp}.json")
         with open(consolidated_file, 'w', encoding='utf-8') as f:
             json.dump(consolidated_log, f, indent=2, ensure_ascii=False)
         print(f"Relatório consolidado salvo: {consolidated_file}")
-        
+
         return {
             "monthly_log": monthly_file,
             "hourly_log": hourly_file,
             "consolidated_report": consolidated_file
         }
-    
+
     def print_summary(self) -> None:
         """Imprime um resumo das análises no console."""
-        
+
         monthly_data = self.generate_monthly_analysis_log()
         hourly_data = self.generate_hourly_analysis_log()
-        
+
         print("\n" + "="*80)
         print("RESUMO DAS ANALISES OBRIGATORIAS - NYC TAXI DATA")
         print("="*80)
-        
+
         print("\nANALISE 1: MEDIA DE VALOR TOTAL POR MES")
         print("-" * 50)
         print(f"Pergunta: {monthly_data['description']}")
@@ -348,7 +347,7 @@ class NYCTaxiAnalysisLogger:
         print("\nDetalhamento por mes:")
         for result in monthly_data['results']:
             print(f"  - {result['month_name']}: R$ {result['avg_total_amount']:.2f} ({result['total_trips']:,} viagens)")
-        
+
         print("\nANALISE 2: MEDIA DE PASSAGEIROS POR HORA (MAIO)")
         print("-" * 50)
         print(f"Pergunta: {hourly_data['description']}")
@@ -356,44 +355,42 @@ class NYCTaxiAnalysisLogger:
         print(f"Resposta: Media geral de {hourly_data['summary']['overall_average']:.2f} passageiros por viagem")
         print(f"Horario de pico: {hourly_data['summary']['peak_hour']['hour']} ({hourly_data['summary']['peak_hour']['value']:.2f} passageiros)")
         print(f"Horario de menor movimento: {hourly_data['summary']['lowest_hour']['hour']} ({hourly_data['summary']['lowest_hour']['value']:.2f} passageiros)")
-        
+
         print("\nINSIGHTS PRINCIPAIS")
         print("-" * 50)
         consolidated = self.generate_consolidated_report()
         for insight in consolidated['key_insights']:
             print(f"  - {insight}")
-        
+
         print("\nQUALIDADE DOS DADOS")
         print("-" * 50)
         print(f"Total de registros processados: {consolidated['data_quality_summary']['total_records_processed']:,}")
         print(f"Completude dos dados: {consolidated['data_quality_summary']['overall_completeness']:.1f}%")
         print(f"Validacao de dados: {'Aprovada' if consolidated['data_quality_summary']['data_validation_passed'] else 'Reprovada'}")
-        
-        print("\n" + "="*80)
 
+        print("\n" + "="*80)
 
 def main():
     """Função principal para gerar os logs das análises."""
-    
+
     print("NYC Taxi Analysis - Gerador de Logs")
     print("=" * 50)
     print("Gerando logs detalhados das análises obrigatórias...")
-    
+
     # Criar instância do gerador
     logger = NYCTaxiAnalysisLogger()
-    
+
     # Gerar e salvar logs
     files_created = logger.save_logs()
-    
+
     # Imprimir resumo
     logger.print_summary()
-    
+
     print(f"\nLogs gerados com sucesso!")
     print(f"Diretorio: {logger.output_dir}")
     print(f"Arquivos criados:")
     for log_type, filepath in files_created.items():
         print(f"   - {log_type}: {filepath}")
-
 
 if __name__ == "__main__":
     main()

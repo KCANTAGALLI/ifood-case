@@ -14,31 +14,31 @@ from datetime import datetime
 
 def mock_spark_imports():
     """Cria mocks para imports do PySpark para teste de sintaxe."""
-    
+
     # Mock classes principais do PySpark
     class MockSparkSession:
         def __init__(self):
             self.version = "3.4.1"
-        
+
         def sql(self, query):
             return MockDataFrame()
-        
+
         def table(self, name):
             return MockDataFrame()
-    
+
     class MockDataFrame:
         def count(self):
             return 1000
-        
+
         def show(self):
             print("Mock DataFrame")
-    
+
     # Adicionar mocks ao sys.modules
     sys.modules['pyspark'] = type(sys)('pyspark')
     sys.modules['pyspark.sql'] = type(sys)('pyspark.sql')
     sys.modules['pyspark.sql.SparkSession'] = MockSparkSession
     sys.modules['pyspark.sql.DataFrame'] = MockDataFrame
-    
+
     # Mock de outras dependências
     sys.modules['loguru'] = type(sys)('loguru')
     sys.modules['matplotlib'] = type(sys)('matplotlib')
@@ -49,21 +49,21 @@ def mock_spark_imports():
 def test_imports_with_mocks():
     """Testa imports dos módulos usando mocks."""
     print("Testando imports com mocks...")
-    
+
     # Configurar mocks
     mock_spark_imports()
-    
+
     # Adicionar src ao path
     sys.path.insert(0, os.path.join(os.getcwd(), 'src'))
     sys.path.insert(0, os.path.join(os.getcwd(), 'analysis'))
-    
+
     modules_to_test = [
         'bronze_layer',
-        'silver_layer', 
+        'silver_layer',
         'gold_layer',
         'etl_pipeline'
     ]
-    
+
     results = {
         "test_name": "import_compatibility",
         "timestamp": datetime.now().isoformat(),
@@ -75,12 +75,12 @@ def test_imports_with_mocks():
             "modules": {}
         }
     }
-    
+
     for module_name in modules_to_test:
         try:
             # Tentar importar o módulo
             module = __import__(module_name)
-            
+
             # Verificar se tem as classes principais
             expected_classes = {
                 'bronze_layer': 'BronzeLayer',
@@ -88,7 +88,7 @@ def test_imports_with_mocks():
                 'gold_layer': 'GoldLayer',
                 'etl_pipeline': 'ETLPipeline'
             }
-            
+
             if hasattr(module, expected_classes[module_name]):
                 results["details"]["successful_imports"] += 1
                 results["details"]["modules"][module_name] = {
@@ -105,7 +105,7 @@ def test_imports_with_mocks():
                     "error": f"Classe {expected_classes[module_name]} não encontrada"
                 }
                 print(f"  {module_name}: Import OK, mas classe {expected_classes[module_name]} não encontrada")
-                
+
         except Exception as e:
             results["details"]["failed_imports"] += 1
             results["details"]["modules"][module_name] = {
@@ -114,13 +114,13 @@ def test_imports_with_mocks():
             }
             print(f"  {module_name}: Erro - {str(e)}")
             results["status"] = "failed"
-    
+
     return results
 
 def test_code_structure():
     """Testa estrutura do código sem executar."""
     print("\nTestando estrutura do código...")
-    
+
     files_to_analyze = [
         'src/bronze_layer.py',
         'src/silver_layer.py',
@@ -128,7 +128,7 @@ def test_code_structure():
         'src/etl_pipeline.py',
         'analysis/nyc_taxi_analysis.py'
     ]
-    
+
     results = {
         "test_name": "code_structure",
         "timestamp": datetime.now().isoformat(),
@@ -140,20 +140,20 @@ def test_code_structure():
             "files": {}
         }
     }
-    
+
     for file_path in files_to_analyze:
         if os.path.exists(file_path):
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
-                
+
                 # Parse AST para verificar sintaxe
                 tree = ast.parse(content)
-                
+
                 # Análise básica
                 classes = [node.name for node in ast.walk(tree) if isinstance(node, ast.ClassDef)]
                 functions = [node.name for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
-                
+
                 results["details"]["analyzed_files"] += 1
                 results["details"]["files"][file_path] = {
                     "status": "success",
@@ -162,9 +162,9 @@ def test_code_structure():
                     "lines": len(content.split('\n')),
                     "has_docstring": ast.get_docstring(tree) is not None
                 }
-                
+
                 print(f"  {file_path}: {len(classes)} classes, {len(functions)} funções")
-                
+
             except SyntaxError as e:
                 results["details"]["syntax_errors"] += 1
                 results["details"]["files"][file_path] = {
@@ -174,7 +174,7 @@ def test_code_structure():
                 }
                 print(f"  {file_path}: Erro de sintaxe na linha {e.lineno}")
                 results["status"] = "failed"
-                
+
             except Exception as e:
                 results["details"]["files"][file_path] = {
                     "status": "error",
@@ -188,13 +188,13 @@ def test_code_structure():
             }
             print(f"  {file_path}: Arquivo não encontrado")
             results["status"] = "failed"
-    
+
     return results
 
 def test_required_analyses():
     """Verifica se as análises obrigatórias estão implementadas."""
     print("\nTestando análises obrigatórias...")
-    
+
     analysis_patterns = {
         'analysis/nyc_taxi_analysis.py': [
             'get_monthly_average_total_amount',
@@ -209,7 +209,7 @@ def test_required_analyses():
             'avg_passenger_count'
         ]
     }
-    
+
     results = {
         "test_name": "required_analyses",
         "timestamp": datetime.now().isoformat(),
@@ -221,20 +221,20 @@ def test_required_analyses():
             "files": {}
         }
     }
-    
+
     for file_path, patterns in analysis_patterns.items():
         if os.path.exists(file_path):
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
-                
+
                 file_result = {
                     "total_patterns": len(patterns),
                     "found_patterns": 0,
                     "missing_patterns": [],
                     "patterns": {}
                 }
-                
+
                 for pattern in patterns:
                     if pattern in content:
                         file_result["found_patterns"] += 1
@@ -247,9 +247,9 @@ def test_required_analyses():
                         file_result["patterns"][pattern] = False
                         print(f"  {file_path}: {pattern} não encontrado")
                         results["status"] = "failed"
-                
+
                 results["details"]["files"][file_path] = file_result
-                
+
             except Exception as e:
                 results["details"]["files"][file_path] = {
                     "error": str(e)
@@ -262,24 +262,24 @@ def test_required_analyses():
             }
             print(f"  {file_path}: Arquivo não encontrado")
             results["status"] = "failed"
-    
+
     return results
 
 def generate_compatibility_report():
     """Gera relatório completo de compatibilidade."""
-    
+
     print("TESTE DE COMPATIBILIDADE - NYC TAXI PIPELINE")
     print("=" * 60)
     print(f"Python Version: {sys.version}")
     print(f"Plataforma: {sys.platform}")
     print(f"Diretório: {os.getcwd()}")
     print()
-    
+
     # Executar todos os testes
     import_results = test_imports_with_mocks()
     structure_results = test_code_structure()
     analysis_results = test_required_analyses()
-    
+
     # Compilar relatório
     report = {
         "test_session": {
@@ -291,7 +291,7 @@ def generate_compatibility_report():
         "compatibility_status": "passed",
         "test_results": [
             import_results,
-            structure_results, 
+            structure_results,
             analysis_results
         ],
         "summary": {
@@ -300,7 +300,7 @@ def generate_compatibility_report():
             "failed_tests": 0
         }
     }
-    
+
     # Calcular status geral
     for test_result in report["test_results"]:
         if test_result["status"] == "passed":
@@ -308,14 +308,14 @@ def generate_compatibility_report():
         else:
             report["summary"]["failed_tests"] += 1
             report["compatibility_status"] = "failed"
-    
+
     # Salvar relatório
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     report_filename = f"compatibility_report_{timestamp}.json"
-    
+
     with open(report_filename, 'w', encoding='utf-8') as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
-    
+
     # Exibir resumo
     print("\n" + "=" * 60)
     print("RESUMO DO TESTE DE COMPATIBILIDADE")
@@ -324,7 +324,7 @@ def generate_compatibility_report():
     print(f"Testes Aprovados: {report['summary']['passed_tests']}/{report['summary']['total_tests']}")
     print(f"Testes Falharam: {report['summary']['failed_tests']}")
     print(f"Relatório salvo em: {report_filename}")
-    
+
     if report["compatibility_status"] == "passed":
         print("\nPROJETO COMPATÍVEL!")
         print("Pronto para execução no Databricks (que usa Python 3.8-3.10)")
@@ -332,7 +332,7 @@ def generate_compatibility_report():
     else:
         print("\nPROBLEMAS DE COMPATIBILIDADE DETECTADOS")
         print("Verifique os detalhes acima e corrija os problemas")
-    
+
     return report["compatibility_status"] == "passed"
 
 if __name__ == "__main__":

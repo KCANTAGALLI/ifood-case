@@ -153,9 +153,9 @@ pipeline = ETLPipeline()
 success = pipeline.run_pipeline()
 
 if success:
-    print("✅ Pipeline executado com sucesso!")
+    print(" Pipeline executado com sucesso!")
 else:
-    print("❌ Pipeline falhou. Verifique os logs.")
+    print(" Pipeline falhou. Verifique os logs.")
 ```
 
 ### Opção 2: Execução por Camadas

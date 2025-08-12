@@ -2,7 +2,7 @@
 
 Este guia fornece instruções detalhadas para executar o pipeline de dados de táxis de NYC.
 
-## 🚀 Execução Rápida (Databricks - Recomendado)
+##  Execução Rápida (Databricks - Recomendado)
 
 ### 1. Preparação do Ambiente
 
@@ -41,9 +41,9 @@ pipeline = ETLPipeline()
 success = pipeline.run_pipeline()
 
 if success:
-    print("✅ Pipeline executado com sucesso!")
+    print(" Pipeline executado com sucesso!")
 else:
-    print("❌ Pipeline falhou. Verifique os logs.")
+    print(" Pipeline falhou. Verifique os logs.")
 ```
 
 ### 3. Executar Análises Obrigatórias
@@ -75,7 +75,7 @@ spark.sql("""
 """).show()
 ```
 
-## 🖥️ Execução Local (Alternativa)
+## 🖥 Execução Local (Alternativa)
 
 ### 1. Configuração do Ambiente
 
@@ -123,7 +123,7 @@ pipeline.run_pipeline()
 python analysis/nyc_taxi_analysis.py
 ```
 
-## 📊 Verificação dos Resultados
+##  Verificação dos Resultados
 
 ### Tabelas Criadas
 
@@ -160,7 +160,7 @@ SELECT * FROM gold_monthly_aggregations;
 SELECT * FROM gold_hourly_aggregations_may LIMIT 10;
 ```
 
-## 🔍 Solução de Problemas
+##  Solução de Problemas
 
 ### Problema: "Table not found"
 **Solução**: Execute as camadas em sequência (Bronze → Silver → Gold)
@@ -201,7 +201,7 @@ spark.conf.set("spark.sql.adaptive.coalescePartitions.minPartitionNum", "1")
 spark.conf.set("spark.sql.adaptive.advisoryPartitionSizeInBytes", "64MB")
 ```
 
-## 📈 Resultados Esperados
+##  Resultados Esperados
 
 ### Análise 1: Média Mensal
 ```
@@ -222,7 +222,7 @@ Maio:     $16.97
 23:00: 1.51 passageiros
 ```
 
-## ✅ Checklist de Execução
+##  Checklist de Execução
 
 - [ ] Ambiente Databricks configurado
 - [ ] Arquivos uploaded
